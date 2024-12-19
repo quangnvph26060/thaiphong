@@ -1,0 +1,14 @@
+@media (max-width: 900px) {
+    .mce-floatpanel.mce-window{/*mce-container mce-panel mce-floatpanel mce-window mce-in*/
+        right: 0 !important;
+        left: 0 !important;
+        width: 90% !important;
+        margin: auto !important;
+    }
+    .mce-container-body.mce-window-body{/*mce-container-body mce-window-body mce-abs-layout*/
+        width: 100% !important;
+    }
+    .mce-foot{
+        width: 100% !important;
+    }
+}

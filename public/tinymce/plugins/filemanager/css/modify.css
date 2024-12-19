@@ -1,0 +1,12 @@
+.active_img{
+    border: 4px solid #39588d !important;
+    margin: 0px !important;
+}
+.grid li{
+    width: 130px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.list-view0.grid .img-precontainer .img-container img{
+    max-width: 100%
+}

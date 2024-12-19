@@ -1,0 +1,56 @@
+@import "font-awesome.min.css";
+body{
+    font-family: arial;
+    font-size: 15px;
+}
+div{
+    line-height: 18px;
+}
+.ft-heading{
+    border-left:2px solid red;
+    padding-left: 5px;
+}
+a{
+    text-decoration: none;
+}
+.wp-caption .wp-caption-text {
+    padding: .4em;
+    font-size: .9em;
+    background: rgba(0,0,0,0.05);
+    font-style: italic;
+}
+.wp-caption-text {
+    text-align: center;
+}
+@media (min-width: 850px){
+    .aligncenter {
+        clear: both;
+        display: block;
+        margin: 0 auto;
+    }
+}
+.wp-caption {
+    margin-bottom: 2em;
+    max-width: 100%;
+    width: 640px;
+}
+.ctct img {
+    max-width: 100%;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+.smbuy-button {
+    padding: 8px 16px;
+    line-height: 15px;
+    font-size: 15px;
+    background-color: #de1414;
+    border: 1px solid #de1414;
+    color: #ffffff;
+    text-shadow: none;
+    display: inline-block;
+    margin: 20px 0px;
+}
+.smbuy-button:hover{
+    color: #fff;
+}

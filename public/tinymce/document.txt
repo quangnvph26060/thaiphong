@@ -1,0 +1,78 @@
+1. Open File Manager:
+<a href="filemanager/dialog.php?type=0&editor=mce_0" class="btn iframe-btn" type="button">Open File Manager</a><br/><br/>
+
+2. Select Only Images (multiple selection):<br/>
+<div class="input-append">
+	<input id="fieldID" type="text" value="" >
+	<a href="filemanager/dialog.php?type=1&field_id=fieldID&relative_url=1&multiple=1" class="btn iframe-btn" type="button">Select</a>
+</div><br/>
+3. Select Only Videos in POP-UP:<br/>
+<div class="input-append">
+  <input  id="fieldID1" type="text" value="" >
+  <a href="javascript:open_popup('filemanager/dialog.php?type=3&popup=1&field_id=fieldID1')" class="btn" type="button">Select</a>
+</div><br/>
+4. Select All Files (relative path):<br/>
+<div class="input-append">
+  <input id="fieldID2" type="text" value="" >
+  <a href="filemanager/dialog.php?type=2&field_id=fieldID2&relative_url=1" class="btn iframe-btn" type="button">Select</a>
+</div>
+5. CROSS-DOMAIN
+<div class="input-append">
+  <input id="fieldID3" type="text" value="" >
+  <a href="http://test.albertoperipolli.com/secondaryserver/rfm0123/dialog.php?type=2&field_id=fieldID3&crossdomain=1" class="btn iframe-btn" type="button">Select</a>
+</div>
+6.So if you want use filemanager in a multiuser CMS you can simply create a folder for each user and set a 
+	session variable ($_SESSION['RF']['subfolder']) with the name of the user folder.
+7.
+You can use normal pop-up, Bootstrap modal, iframe, FancyBox iframe, Lightbox iframe to open the FileManager with these paths:
+
+Only open filemanager(type=0 and not set field_id):
+path to filemanager../filemanager/dialog.php?type=0&fldr=
+
+Select Image: (type=1 and set id of input text in field_id variable):
+path to filemanager../filemanager/dialog.php?type=1&field_id=fieldID
+
+Select Video: (type=3 and set id of input text in field_id variable):
+path to filemanager../filemanager/dialog.php?type=3&field_id=fieldID
+
+Select File: (type=2 and set id of input text in field_id variable):
+path to filemanager../filemanager/dialog.php?type=2&field_id=fieldID
+
+Get Variables list
+type: the type of filemanager (1:images files 2:all files 3:video files)
+fldr: the folder where i enter (the root folder remains the same). default=""
+sort_by: the element to sorting (values: name,size,extension,date) default=""
+descending: descending? or ascending (values=1 or 0) default="0"
+lang: the language code (ex: &lang=en_EN). default="en_EN"
+relative_url: should be added to the request with a value of "1" when opening RFM. Otherwise returned URL-s will be absolute. extensions: a json encoded 
+array of available files extensions (ex: &extensions=["pdf",'doc'])
+
+If you want use popup add in the address &popup=1
+
+PS If you want to force loading at root set fldr to /
+
+In demo page i used FancyBox with this configuration:
+
+        $('.iframe-btn').fancybox({	
+    	'width'		: 900,
+    	'height'	: 600,
+    	'type'		: 'iframe',
+            'autoScale'    	: false
+        });
+
+
+		
+Bootstrap => https://twitter.github.io/bootstrap/
+Featherlight => https://github.com/noelboss/featherlight
+Dropzonejs => http://www.dropzonejs.com/
+Fancybox => http://fancybox.net/
+TouchSwipe => http://labs.rampinteractive.co.uk/touchSwipe/demos/
+PHP Image Magician => http://phpimagemagician.jarrodoberto.com/
+Mini icons => http://www.fatcow.com/free-icons‎
+JUpload => http://jupload.sourceforge.net/
+Bootbox => http://bootboxjs.com/
+jQuery contextMenu => https://swisnl.github.io/jQuery-contextMenu/
+Bootstrap-modal => https://github.com/jschr/bootstrap-modal
+jPlayer => https://jplayer.org/
+Lazy Load => https://www.andreaverlicchi.eu/lazyload/
+jQuery-File-Upload => https://github.com/blueimp/jQuery-File-Upload 

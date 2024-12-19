@@ -1,0 +1,8 @@
+[31-Oct-2020 21:21:05 Asia/Ho_Chi_Minh] PHP Warning:  scandir(../../../../public/files/editor/source/): failed to open dir: No such file or directory in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 553
+[31-Oct-2020 21:21:05 Asia/Ho_Chi_Minh] PHP Warning:  scandir(): (errno 2): No such file or directory in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 553
+[31-Oct-2020 21:21:05 Asia/Ho_Chi_Minh] PHP Warning:  Invalid argument supplied for foreach() in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 565
+[31-Oct-2020 21:21:05 Asia/Ho_Chi_Minh] PHP Warning:  Invalid argument supplied for foreach() in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 1115
+[31-Oct-2020 21:21:26 Asia/Ho_Chi_Minh] PHP Warning:  scandir(../../../public/files/editor/source/): failed to open dir: No such file or directory in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 553
+[31-Oct-2020 21:21:26 Asia/Ho_Chi_Minh] PHP Warning:  scandir(): (errno 2): No such file or directory in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 553
+[31-Oct-2020 21:21:26 Asia/Ho_Chi_Minh] PHP Warning:  Invalid argument supplied for foreach() in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 565
+[31-Oct-2020 21:21:26 Asia/Ho_Chi_Minh] PHP Warning:  Invalid argument supplied for foreach() in /home/thiet155/public_html/public/scripts/tinymce/plugins/filemanager/dialog.php on line 1115

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Summernote Example</title>
+
+        <!-- Load jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Load Bootstrap and Summernote -->
+        <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+            rel="stylesheet"
+        />
+
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1>Summernote Example</h1>
+            <textarea name="description"></textarea>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('textarea[name="description"]').summernote({
+                    placeholder: "Mô tả nội dung...",
+                    tabsize: 2,
+                    height: 300,
+                    toolbar: [
+                        ["style", ["bold", "italic", "underline", "clear"]],
+                        [
+                            "font",
+                            [
+                                "strikethrough",
+                                "superscript",
+                                "subscript",
+                                "fontname",
+                                "fontsize",
+                                "color",
+                                "backcolor",
+                            ],
+                        ],
+                        ["para", ["ul", "ol", "paragraph", "height"]],
+                        ["insert", ["link", "picture", "video", "table"]],
+                        ["view", ["fullscreen", "codeview", "help"]],
+                        ["heading", ["style"]],
+                    ],
+                });
+            });
+        </script>
+    </body>
+</html>

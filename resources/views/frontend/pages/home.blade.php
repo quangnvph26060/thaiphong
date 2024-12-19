@@ -32,9 +32,6 @@
                 </div>
             </div>
         </div>
-
-
-
         @foreach ($catalogues as $catalog)
             <div class="row">
                 <div class="widget widget-product widget-27 col-12 col-md-12" data-widget-id="27" data-widget="product">

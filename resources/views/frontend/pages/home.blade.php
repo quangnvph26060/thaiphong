@@ -52,12 +52,10 @@
                                 <div class="tab-content product-view">
                                     <div class="tab-pane active loaded" id="tab_style_27_0">
                                         <div class="row product-grid-view item-style">
-
                                             @foreach ($products as $product)
                                                 <div class="col-6 col-sm-4 col-md-4 col-lg-3">
                                                     <div class="product-item relative">
                                                         <figure class="photoframe relative">
-                                                            
                                                             <div class="relative img-product">
                                                                 <a href="{{ route('product.detail', $product->slug) }}"
                                                                     class="d-block relative">

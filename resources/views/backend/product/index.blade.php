@@ -16,8 +16,7 @@
                         <th>STT</th>
                         <th>Tên</th>
                         <th>Danh mục</th>
-                        <th>Bảo hành (Tháng)</th>
-                        <th>Bán chạy</th>
+                        <th>Bảo hành</th>
                         <th>Giá</th>
                         <th style="text-align: center">Hành động</th>
                     </thead>
@@ -67,10 +66,6 @@
                         data: 'guarantee',
                         name: 'guarantee',
                         searchable: false
-                    },
-                    {
-                        data: 'is_hot',
-                        name: 'is_hot'
                     },
                     {
                         data: 'price',

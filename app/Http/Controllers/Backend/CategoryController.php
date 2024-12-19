@@ -61,6 +61,7 @@ class CategoryController extends Controller
                 'title_seo' => 'nullable',
                 'keyword_seo' => 'nullable',
                 'description_seo' => 'nullable',
+                'location' => 'nullable'
             ],
             __('request.messages'),
             [
@@ -68,6 +69,7 @@ class CategoryController extends Controller
                 'title_seo' => 'Tiêu đề SEO',
                 'description_seo' => 'Mô tả SEO',
                 'keyword_seo' => 'Từ khóa SEO',
+                'location' => 'Vị trí' . $id . 'Đã tồn tại',
             ]
         );
 
@@ -99,6 +101,7 @@ class CategoryController extends Controller
                 'keyword_seo' => 'nullable',
                 'description_seo' => 'nullable',
                 'status' => 'nullable',
+                'location' => 'nullable'
             ],
             __('request.messages'),
             [
@@ -107,6 +110,7 @@ class CategoryController extends Controller
                 'description_seo' => 'Mô tả SEO',
                 'keyword_seo' => 'Từ khóa SEO',
                 'status' => 'Trạng thái',
+                'location' => 'Vị trí hiển thị',
             ]
         );
 
@@ -176,16 +180,15 @@ class CategoryController extends Controller
 
     public function updateCategoryStatus(Request $request)
     {
-        try{
+        try {
             $category = Category::findOrFail($request->id);
-            $category->status = $request->input('status');
+            $category->is_show_home = !$category->is_show_home;
+
             $category->save();
-            return response()->json(['success' => true, 'message' => 'Cập nhật trạng thái danh mục thành công']);
-        }
-        catch(Exception $e)
-        {
-            Log::error('Failed to update category status: ' .$e->getMessage());
-            return response()->json(['success' => false, 'message' => 'Cập nhật trạng thái danh mục thất bại']);
+            return response()->json(['success' => true, 'message' => 'Cập nhật danh mục thành công']);
+        } catch (Exception $e) {
+            Log::error('Failed to update category status: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Cập nhật danh mục thất bại']);
         }
     }
 }

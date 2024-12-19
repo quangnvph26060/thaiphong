@@ -32,69 +32,74 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="widget widget-product widget-27 col-12 col-md-12" data-widget-id="27" data-widget="product">
-                <div class="widget_product_body style1" style="background-color: #ffffff">
-                    <div class="container" data-ajax="#">
-                        <div class="content-widget">
-                            <div class="d-flex  align-items-center">
-                                <div class="border-end catalogues">
-                                    Máy Sấy Tóc
-                                </div>
-                                <div class="more">
-                                    <a href="">
-                                        Xem thêm
-                                        <i class="fas fa-caret-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="widget-content">
-                                <div class="tab-content product-view">
-                                    <div class="tab-pane active loaded" id="tab_style_27_0">
-                                        <div class="row product-grid-view item-style">
-                                            @foreach ($products as $product)
-                                                <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-                                                    <div class="product-item relative">
-                                                        <figure class="photoframe relative">
-                                                            <div class="relative img-product">
-                                                                <a href="{{ route('product.detail', $product->slug) }}"
-                                                                    class="d-block relative">
-                                                                    <img src="{{ showImage($product->main_image) }}"
-                                                                        width="100%" height="100%"
-                                                                        data-isrc="{{ showImage($product->main_image) }}"
-                                                                        class="lazyload" alt="{{ $product->name }}"
-                                                                        aria-label="{{ $product->name }}" />
-                                                                </a>
-                                                            </div>
-                                                            <figcaption class="infor-product">
-                                                                <h3 class="wrap-two-lines product-title">
-                                                                    <a href="{{ route('product.detail', $product->slug) }}"
-                                                                        class="two-lines"
-                                                                        aria-label="{{ $product->name }}">{{ $product->name }}</a>
-                                                                </h3>
-                                                                <div class="btn-purchased">
-                                                                    <a href="{{ route('contact', $product->slug) }}"
-                                                                        rel="nofollow"
-                                                                        class="btn btn--m btn-primary btn-item"
-                                                                        title="{{ $product->name }}">
-                                                                        Liên hệ <i class="fa fa-phone-alt ml-2"
-                                                                            aria-hidden="true"></i></a>
-                                                                </div>
-                                                            </figcaption>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
+
+
+
+        @foreach ($catalogues as $catalog)
+            <div class="row">
+                <div class="widget widget-product widget-27 col-12 col-md-12" data-widget-id="27" data-widget="product">
+                    <div class="widget_product_body style1" style="background-color: #ffffff">
+                        <div class="container" data-ajax="#">
+                            <div class="content-widget">
+                                <div class="d-flex  align-items-center">
+                                    <div class="border-end catalogues">
+                                        {{ $catalog->name }}
                                     </div>
-                                    <div class="tab-pane" id="tab_style_27_1"></div>
+                                    <div class="more">
+                                        <a href="{{ route('product.detail', $catalog->slug) }}">
+                                            Xem thêm
+                                            <i class="fas fa-caret-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="tab-content product-view">
+                                        <div class="tab-pane active loaded" id="tab_style_27_0">
+                                            <div class="row product-grid-view item-style">
+                                                @foreach ($catalog->product as $product)
+                                                    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+                                                        <div class="product-item relative">
+                                                            <figure class="photoframe relative">
+                                                                <div class="relative img-product">
+                                                                    <a href="{{ route('product.detail', $product->slug) }}"
+                                                                        class="d-block relative">
+                                                                        <img src="{{ showImage($product->main_image) }}"
+                                                                            width="100%" height="100%"
+                                                                            data-isrc="{{ showImage($product->main_image) }}"
+                                                                            class="lazyload" alt="{{ $product->name }}"
+                                                                            aria-label="{{ $product->name }}" />
+                                                                    </a>
+                                                                </div>
+                                                                <figcaption class="infor-product">
+                                                                    <h3 class="wrap-two-lines product-title">
+                                                                        <a href="{{ route('product.detail', $product->slug) }}"
+                                                                            class="two-lines"
+                                                                            aria-label="{{ $product->name }}">{{ $product->name }}</a>
+                                                                    </h3>
+                                                                    <div class="btn-purchased">
+                                                                        <a href="{{ route('contact', $product->slug) }}"
+                                                                            rel="nofollow"
+                                                                            class="btn btn--m btn-primary btn-item"
+                                                                            title="{{ $product->name }}">
+                                                                            Liên hệ <i class="fa fa-phone-alt ml-2"
+                                                                                aria-hidden="true"></i></a>
+                                                                    </div>
+                                                                </figcaption>
+                                                            </figure>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab_style_27_1"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
         {{-- <div class="bg-container">
             <div class="container px-0">
                 <div class="row row-widget justify-content-end">

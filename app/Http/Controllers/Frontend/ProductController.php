@@ -19,8 +19,6 @@ class ProductController extends Controller
         })->when(request('keyword'), function ($query) {
             return $query->where('name', 'like', '%' . request('keyword') . '%');
         })
-            ->orderByDesc('is_hot')
-            ->orderByDesc('created_at')
             ->paginate(12);
 
         return view('frontend.pages.product.list', compact('products'));
@@ -40,7 +38,7 @@ class ProductController extends Controller
             if ($category) {
                 $products = Product::where('category_id', $category->id)->paginate(12);
                 // dd($product);
-                return view('frontend.pages.product.list', compact('products'));
+                return view('frontend.pages.product.list', compact('products', 'category'));
             }
 
             // Nếu không tìm thấy danh mục tương ứng, điều hướng về trang danh sách sản phẩm mặc định

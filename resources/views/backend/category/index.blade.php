@@ -271,13 +271,20 @@
                         </div>
 
                         <input type="hidden" name="type" value="{{ request()->get('type') }}">
-                        <div class="form-group mb-3">
+                        @if (request()->get('type') == 'products')
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Vị trí hiển thị</label>
+                                <input type="number" class="form-control" name="location" id="location">
+                                <small id="location-error" class="text-danger"></small>
+                            </div>
+                        @endif
+                        {{-- <div class="form-group mb-3">
                             <label for="status">Trạng thái</label>
                             <select class="form-select" id="status" name="status">
                                 <option value="1">Kích hoạt</option>
                                 <option value="0">Tắt</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="mb-3">
                             <label for="title_seo" class="form-label">Tiêu đề SEO</label>
                             <input type="text" class="form-control" id="title_seo" name="title_seo">
@@ -318,6 +325,14 @@
                             <input type="text" class="form-control" id="edit-name" name="name">
                             <small id="name-error" class="text-danger"></small>
                         </div>
+                        @if (request()->get('type') == 'products')
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Vị trí hiển thị</label>
+                                <input type="number" class="form-control" name="location" id="edit-location">
+                                <small id="location-error" class="text-danger"></small>
+                            </div>
+                        @endif
+
                         <div class="mb-3">
                             <label for="title_seo" class="form-label">Tiêu đề SEO</label>
                             <input type="text" class="form-control" id="edit-title_seo" name="title_seo">
@@ -390,7 +405,8 @@
                         if (response) {
                             // Gán dữ liệu vào các trường trong form
                             $('#edit-category-id').val(response.id); // Gán ID vào hidden input
-                            $('#edit-name').val(response.name); // Gán tên
+                            $('#edit-name').val(response.name);
+                            $('#edit-location').val(response.location); // Gán tên
                             $('#edit-title_seo').val(response.title_seo ||
                                 ''); // Gán tiêu đề SEO
                             $('#edit-description_seo').val(response.description_seo ||
@@ -426,12 +442,16 @@
                     data: $(this).serialize(),
                     success: function(response) {
                         if (response.success) {
+
+
                             $('#addCategoryModal').modal('hide');
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Thành công',
                                 text: response.message,
                             });
+
+                            window.location.reload();
 
                             // Cập nhật bảng và phân trang
                             $('#table-content').html(response.html);
@@ -467,6 +487,8 @@
                                 title: 'Thành công',
                                 text: response.message,
                             });
+
+                            window.location.reload();
 
                             // Cập nhật bảng và phân trang
                             $('#table-content').html(response.html);

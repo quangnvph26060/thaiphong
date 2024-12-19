@@ -30,12 +30,10 @@ class Product extends Model
         'manufacturer',
         'model',
         'origin',
-        'is_hot'
     ];
 
     protected $casts = [
         'images' => 'array',
-        'is_hot' => 'boolean',
     ];
 
     public static function boot()

@@ -50,6 +50,7 @@ class CategoryService
                 'description_seo' => $data['description_seo'],
                 'keyword_seo' => $data['keyword_seo'],
                 'title_seo' => $data['title_seo'],
+                'location' => $data['location'],
             ]);
             DB::commit();
             return $category;

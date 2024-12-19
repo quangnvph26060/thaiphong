@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <x-breadcrumb :title="'Sản phẩm'" />
+    <x-breadcrumb :title="'Sản phẩm'" :name="$category->name ?? ''" :route="route('product.list')" />
 
     <div class="page-content">
         <div class="container">
@@ -43,10 +43,6 @@
                                 <div class="item col-6 col-sm-6 col-md-6 col-lg-4 pd-style1">
                                     <div class="product-item relative">
                                         <figure class="photoframe relative">
-                                            @if ($product->is_hot)
-                                                <img style="position: absolute; max-width: 22%; height: auto; z-index: 100; top: 0px; right: -3px;"
-                                                    src="{{ asset('frontend/assets/image/pngegg.png') }}" alt="">
-                                            @endif
                                             <div class="relative img-product">
                                                 <a href="{{ route('product.detail', $product->slug) }}"
                                                     class="d-block relative">

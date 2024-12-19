@@ -17,6 +17,8 @@ class Category extends Model
         'description_seo',
         'keyword_seo',
         'type',
+        'location',
+        'is_show_home',
         'status'
     ];
 
@@ -42,4 +44,8 @@ class Category extends Model
     {
         return $query->where('type', $type);
     }
+
+    protected $casts = [
+        'is_show_home' => 'boolean'
+    ];
 }

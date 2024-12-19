@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         if ($request->ajax()) {
             DB::reconnect();
-            return datatables()->of(Product::select(['id', 'name', 'status', 'price', 'guarantee', 'sale_price', 'category_id', 'is_hot'])->get())
+            return datatables()->of(Product::select(['id', 'name', 'status', 'price', 'guarantee', 'sale_price', 'category_id'])->get())
                 ->addColumn('category_id', function ($row) {
                     return $row->category->name ?? '';
                 })
@@ -49,16 +49,6 @@ class ProductController extends Controller
                 })
                 ->addColumn('price', function ($row) {
                     return number_format($row->price, 0, ',', '.') . ' VND';
-                })
-                ->addColumn('is_hot', function ($row) {
-                    return '
-                    <div class="radio-container">
-                        <label class="toggle">
-                            <input type="checkbox" class="status-change update-status" data-id="' . $row->id . '" ' . ($row->is_hot ? 'checked' : 'a') . '>
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-                ';
                 })
                 ->addColumn('sale_price', function ($row) {
                     return number_format($row->price, 0, ',', '.') . ' VND';
@@ -73,7 +63,7 @@ class ProductController extends Controller
                     </div>
                 ';
                 })
-                ->rawColumns(['status', 'action', 'is_hot'])
+                ->rawColumns(['status', 'action'])
                 ->addIndexColumn()
                 ->make(true);
         }

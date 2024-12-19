@@ -4,7 +4,7 @@
             <li>
                 <a class="color-base" href="{{ url('/') }}">Trang chủ</a><i>/</i>
             </li>
-            @if (isset($name))
+            @if (!empty($name))
                 <li>
                     <a href="{{ $route }}" class="color-base">
                         {{ $title }}

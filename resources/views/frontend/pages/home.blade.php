@@ -77,8 +77,7 @@
                                                                         <a href="{{ route('contact', $product->slug) }}"
                                                                             rel="nofollow"
                                                                             class="btn btn--m btn-primary btn-item"
-                                                                            title="{{ $product->name }}">
-                                                                            Liên hệ <i class="fa fa-phone-alt ml-2"
+                                                                            title="{{ $product->name }}">Liên hệ <i class="fa fa-phone-alt ml-2"
                                                                                 aria-hidden="true"></i></a>
                                                                     </div>
                                                                 </figcaption>
@@ -97,76 +96,6 @@
                 </div>
             </div>
         @endforeach
-        {{-- <div class="bg-container">
-            <div class="container px-0">
-                <div class="row row-widget justify-content-end">
-                    <div class="widget widget-text_editor widget-32 col-12 col-md-6" data-widget-id="32"
-                        data-widget="text_editor">
-                        <div class="block-wrapper style1">
-                            <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-12 blog-container">
-                                        <div class="ck_editor_content widget-content">
-                                            <p style="text-align: center">
-                                                <a href="{{ route('introduce') }}"><img
-                                                        src="https://media.loveitopcdn.com/39908/sonoscape-2.png"
-                                                        data-isrc="https://media.loveitopcdn.com/39908/sonoscape-2.png"
-                                                        style="height: 60px; width: 190px" /></a>
-                                            </p>
-
-                                            {!! \Str::words($introduction->article, 120, '...') !!}
-
-                                            <p>
-                                                <a href="{{ route('introduce') }}">
-                                                    <span style="color: #ff0000">
-                                                        <strong>&lt; Xem Thêm&gt;</strong>
-                                                    </span>
-                                                </a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget widget-youtube widget-58 col-12 col-md-6" data-widget="youtube">
-                        <div class="style style1">
-                            <div class="container">
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 blog-container content-widget">
-                                        <div class="text-center widget-content" style="max-width: 600px !important">
-                                            <!-- Swiper Container -->
-                                            <div class="swiper youtube-slider">
-                                                <!-- Swiper Wrapper -->
-                                                <div class="swiper-wrapper">
-
-                                                    @foreach ($sliderVideo->items['links'] as $video)
-                                                        <div class="swiper-slide">
-                                                            <iframe width="560" height="315"
-                                                                src="https://www.youtube.com/embed/{{ getYouTubeVideoId($video) }}?si=24ccB15cPCU7M77X"
-                                                                title="YouTube video player" frameborder="0"
-                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                                referrerpolicy="strict-origin-when-cross-origin"
-                                                                allowfullscreen></iframe>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-
-                                                <!-- Swiper Pagination -->
-                                                <div class="swiper-pagination"></div>
-                                                <!-- Swiper Navigation -->
-                                                <div class="swiper-button-prev"></div>
-                                                <div class="swiper-button-next"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="row">
             <div class="widget widget-post_category widget-35 col-12 col-md-12" data-widget-id="35"
                 data-widget="post_category">
@@ -182,8 +111,7 @@
                             <div class="text-center">
                                 <div class="box_heading">
                                     <h2 class="heading">
-                                        <a style="color: #cc0000 !important" href="{{ route('news.list') }}">TIN TỨC NỔI
-                                            BẬT</a>
+                                        <a style="color: #cc0000 !important" href="{{ route('news.list') }}">TIN TỨC NỔI BẬT</a>
                                     </h2>
                                     <div class="line-hg"><span></span></div>
                                     <div class="svg-wrap">

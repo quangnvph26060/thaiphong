@@ -21,7 +21,7 @@
                                         <picture class="banner-thumb">
                                             <source media="(min-width: 650px)" srcset="{{ showImage($item['slider']) }}" />
                                             <source media="(min-width: 350px)" srcset="{{ showImage($item['slider']) }}" />
-                                            <img src="{{ showImage($item['slider']) }}" width="100%" height="800"
+                                            <img loading="lazy" src="{{ showImage($item['slider']) }}" width="100%" height="800"
                                                 alt="{{ $item['alt'] }}" />
                                         </picture>
                                     </a>

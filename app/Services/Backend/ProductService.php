@@ -25,45 +25,29 @@ class ProductService
         return $this->product->orderByDesc('created_at')->get();
     }
 
-    public function addNewProduct(array $data)
+    public function addNewProduct($data)
     {
         try {
             DB::beginTransaction();
 
-            $data['price'] = isset($data['price']) ? preg_replace('/[^\d]/', '', $data['price']) : 0;
-            $data['sale_price'] = isset($data['sale_price']) ? preg_replace('/[^\d]/', '', $data['sale_price']) : 0;
+            $credentials = $data->toArray();
 
-            if (request()->hasFile('file_pdf')) {
-                $file = request()->file('file_pdf');
+            if ($data->hasFile('file_pdf')) {
+                $file = $data->file('file_pdf');
                 $fileName = $file->getClientOriginalName();
-                $data['file_pdf'] = file_get_contents($file->getRealPath());
-                $data['file_name'] = $fileName;
+                $credentials['file_pdf'] = file_get_contents($file->getRealPath());
+                $credentials['file_name'] = $fileName;
             }
 
-            $product = $this->product->create($data);
-
-            if (request()->hasFile('main_image')) { // Kiểm tra xem file có được upload hay không
-                $file = request()->file('main_image'); // Lấy tệp từ request
-                $mainImageName = $file->getClientOriginalName();
-                $main_image = saveImage(request(), 'main_image', 'product_main_image');
-            } else {
-                $main_image = null; // Xử lý trường hợp không có tệp tải lên
+            if ($data->hasFile('main_image')) {
+                $credentials['main_image'] = saveImage($data, 'main_image', 'product_main_image');
             }
 
-            $images = [];
-
-            if (request()->hasFile('images')) {
-                foreach (request()->file('images') as $image) {
-                    $imageName = $image->getClientOriginalName();
-                    $path = $image->storeAs('product_images', $imageName, 'public');
-                    $images[] = $path;
-                }
+            if ($data->hasFile('images')) {
+                $credentials['images'] = saveImagesWithoutResize($data, 'images', 'product_images', true);
             }
 
-            $product->update([
-                'images' => $images,
-                'main_image' => $main_image
-            ]);
+            $product = $this->product->create($credentials);
 
             DB::commit();
             return $product;
@@ -73,74 +57,45 @@ class ProductService
         }
     }
 
-    public function updateProduct(array $data, $id)
+    public function updateProduct($data, $id)
     {
-        // dd($data);
         try {
             DB::beginTransaction();
 
-            $data['price'] = isset($data['price']) ? preg_replace('/[^\d]/', '', $data['price']) : 0;
-            $data['sale_price'] = isset($data['sale_price']) ? preg_replace('/[^\d]/', '', $data['sale_price']) : 0;
+            $credentials = $data->toArray();
 
             $product = $this->product->find($id);
 
-            if (isset($data['deleteAllImage'])) {
+            $credentials['images'] = [];
 
-                foreach ($product->images as $image) {
-                    deleteImage($image);
+            if ($data->old) {
+                foreach ($product->images ?? [] as $key => $item) {
+                    if (isset($data->old[$key])) {
+                        $credentials['images'][] = $item;
+                    } else {
+                        deleteImage($item);
+                    }
                 }
             }
 
-
-
-            if (request()->hasFile('file_pdf')) {
-                $file = request()->file('file_pdf');
+            if ($data->hasFile('file_pdf')) {
+                $file = $data->file('file_pdf');
                 $fileName = $file->getClientOriginalName();
                 $data['file_pdf'] = file_get_contents($file->getRealPath());
                 $data['file_name'] = $fileName;
             }
 
-            // [
-            //                 'name' => $data['name'],
-            //                 'guarantee' => $data['guarantee'],
-            //                 'price' => $price,
-            //                 'status' => $data['status'],
-            //                 'description' => $data['description'],
-            //                 'sub_description' => $data['sub_description'],
-            //                 'sale_price' => $salePrice,
-            //                 'title_seo' => $data['title_seo'],
-            //                 'description_seo' => $data['description_seo'],
-            //                 'keyword_seo' => $data['keyword_seo'],
-            //                 'category_id' => $data['category_id'],
-            //                 'file_pdf' => $fileData,
-            //             ]
-
-
-            $product->update($data);
-
-
-            $images = $product->images;
-            if (request()->hasFile('images')) {
-                foreach (request()->file('images') as $image) {
-                    $imageName = $image->getClientOriginalName();
-                    $path = $image->storeAs('product_images', $imageName, 'public');
-                    $images[] = $path;
-                }
-            } else {
-                $images = $product->images; // Giữ lại ảnh cũ nếu không có ảnh mới
+            if ($data->hasFile('images')) {
+                $newImages = saveImagesWithoutResize($data, 'images', 'product_images', true);
+                $credentials['images'] = array_merge($credentials['images'] ?? [], $newImages);
             }
 
-            if (request()->hasFile('main_image')) {
+            if ($data->hasFile('main_image')) {
                 deleteImage($product->main_image);
-                $main_image = saveImage(request(), 'main_image', 'product_main_image');
-            } else {
-                $main_image = $product->main_image; // Giữ lại ảnh đại diện cũ
+                $credentials['main_image'] = saveImage($data, 'main_image', 'product_main_image');
             }
 
-            $product->update([
-                'images' => $images,
-                'main_image' => $main_image,
-            ]);
+            $product->update($credentials);
 
             DB::commit();
             return $product;

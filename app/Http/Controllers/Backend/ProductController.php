@@ -86,8 +86,6 @@ class ProductController extends Controller
 
     public function add()
     {
-        // $countries = Country::all();
-        // $companies = Company::all();
         $categories = Category::type('products')->get();
 
         return view('backend.product.add', compact('categories'));
@@ -130,12 +128,7 @@ class ProductController extends Controller
 
 
         try {
-            $product = $this->productService->updateProduct($request->all(), $id);
-
-            $products = $this->productService->getPaginatedProduct();
-
-            $html = view('backend.product.table', compact('products'))->render();
-            $pagination = $products->links('vendor.pagination.custom')->render();
+            $product = $this->productService->updateProduct($request, $id);
 
             toastr()->success('Cập nhật thành công.');
 
@@ -148,7 +141,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
 
         $request->validate(
             [
@@ -185,15 +177,8 @@ class ProductController extends Controller
             ]
         );
 
-        // dd($request->all());
         try {
-            $product = $this->productService->addNewProduct($request->all());
-
-            // Lấy lại danh sách công ty để cập nhật bảng
-            $products = $this->productService->getPaginatedProduct(); // Hàm này sẽ trả về danh sách công ty phân trang
-
-            $html = view('backend.product.table', compact('products'))->render();
-            $pagination = $products->links('vendor.pagination.custom')->render();
+            $product = $this->productService->addNewProduct($request);
 
             return redirect()->route('admin.product.index')->with('Thêm sản phẩm mới thành công');
         } catch (Exception $e) {
@@ -256,9 +241,15 @@ class ProductController extends Controller
         try {
             $categories = Category::type('products')->get();
             $product = Product::find($id);
-            // $productImages = $product->whereHas('images')->get();
 
-            return view('backend.product.edit', compact('product', 'categories'));
+            $albums = collect($product->images)->map(function ($image, $index) {
+                return [
+                    'src' => showImage($image),
+                    'id' => $index + 1,
+                ];
+            });
+
+            return view('backend.product.edit', compact('product', 'categories', 'albums'));
         } catch (Exception $e) {
             Log::error('Failed to find this Product: ' . $e->getMessage());
             return response()->json(['success' => false, 'message' => 'Tìm sản phẩm thất bại']);

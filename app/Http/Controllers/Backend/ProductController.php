@@ -40,7 +40,7 @@ class ProductController extends Controller
     {
         if ($request->ajax()) {
             DB::reconnect();
-            return datatables()->of(Product::select(['id', 'name', 'status', 'price', 'guarantee', 'sale_price', 'category_id'])->get())
+            return datatables()->of(Product::select(['id', 'name', 'status', 'price', 'guarantee', 'sale_price', 'category_id', 'display_position'])->get())
                 ->addColumn('category_id', function ($row) {
                     return $row->category->name ?? '';
                 })
@@ -53,23 +53,35 @@ class ProductController extends Controller
                 ->addColumn('sale_price', function ($row) {
                     return number_format($row->price, 0, ',', '.') . ' VND';
                 })
-
-                ->addColumn('action', function ($row) {
+                ->addColumn('display_position', function ($row) {
+                    // Nếu bạn muốn hiển thị số thứ tự và có icon chỉnh sửa
                     return '
-                    <div class="btn-group">
-                        <button class="btn btn-danger btn-sm delete-btn" data-url="' . route('admin.product.delete', $row->id) . '">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
+                    <span class="display-position-value-' . $row->id . '" data-id="' . $row->id . '">' .
+                        ($row->display_position ?? 0) .
+                        '</span>
+                    <button class="btn btn-warning btn-sm edit-position" data-id="' . $row->id . '">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <input type="number" class="form-control edit-input" style="display:none" value="' . ($row->display_position ?? 0) . '" data-id="' . $row->id . '">
                 ';
                 })
-                ->rawColumns(['status', 'action'])
+                ->addColumn('action', function ($row) {
+                    return '
+                <div class="btn-group">
+                    <button class="btn btn-danger btn-sm delete-btn" data-url="' . route('admin.product.delete', $row->id) . '">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            ';
+                })
+                ->rawColumns(['status', 'action', 'display_position'])
                 ->addIndexColumn()
                 ->make(true);
         }
 
         return view('backend.product.index');
     }
+
 
 
     public function add()
@@ -276,5 +288,23 @@ class ProductController extends Controller
             'status' => true,
             'message' => 'Cập nhật thành công',
         ]);
+    }
+
+    // ProductController.php
+
+    public function updateDisplayPosition(Request $request)
+    {
+        $product = Product::find($request->id);
+
+        if ($product) {
+            $product->display_position = $request->display_position;
+            $product->save();
+
+            // Trả về phản hồi thành công
+            return response()->json(['success' => true]);
+        }
+
+        // Trả về lỗi nếu không tìm thấy sản phẩm
+        return response()->json(['success' => false], 400);
     }
 }

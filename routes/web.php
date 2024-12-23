@@ -100,6 +100,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/add', [ProductController::class, 'add'])->name('add');
             route::post('delete-image/{id}', [ProductController::class, 'deleteImage'])->name('delete-image');
             route::post('change-is-hot', [ProductController::class, 'changeIsHot'])->name('change.is-hot');
+            route::post('update-display-position', [ProductController::class, 'updateDisplayPosition'])->name('updateDisplayPosition');
         });
 
         Route::prefix('page-config')->name('pageConfig.')->group(function () {

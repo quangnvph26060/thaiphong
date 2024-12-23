@@ -30,6 +30,7 @@ class Product extends Model
         'manufacturer',
         'model',
         'origin',
+        'display_position'
     ];
 
     protected $casts = [

@@ -20,31 +20,13 @@
             </div>
             <div class="widget-content">
                 <ul class="categories-list navbar-nav mb-menu">
-                    <li class="nav-item relative default wb-header-menu-item">
-                        <a class="nav-link" href="{{ url('/') }}" aria-label="TRANG CHỦ">
-                            TRANG CHỦ
-                        </a>
-                    </li>
-                    <li class="nav-item relative default wb-header-menu-item">
-                        <a class="nav-link" href="{{ route('introduce') }}" aria-label="GIỚI THIỆU">
-                            GIỚI THIỆU
-                        </a>
-                    </li>
-                    <li class="nav-item relative default wb-header-menu-item">
-                        <a class="nav-link" href="{{ route('product.list') }}" target='"_blank"' aria-label="Sản phẩm">
-                            SẢN PHẨM
-                        </a>
-                    </li>
-                    <li class="nav-item relative default wb-header-menu-item">
-                        <a class="nav-link" href="{{ route('news.list') }}" aria-label="TIN TỨC MỚI">
-                            TIN TỨC MỚI
-                        </a>
-                    </li>
-                    <li class="nav-item relative default wb-header-menu-item">
-                        <a class="nav-link" href="{{ route('contact') }}" aria-label="LIÊN HỆ">
-                            LIÊN HỆ
-                        </a>
-                    </li>
+                    @foreach ($categoryProduct as $item)
+                        <li class="nav-item relative default wb-header-menu-item">
+                            <a class="nav-link" href="{{ url('/') }}" aria-label="TRANG CHỦ">
+                                {{ $item->name }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -139,7 +121,7 @@
         text-decoration: none;
     }
 
-    .news-title:hover{
+    .news-title:hover {
         color: #c6111d;
     }
 

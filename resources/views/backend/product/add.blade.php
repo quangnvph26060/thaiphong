@@ -98,10 +98,11 @@
                             </div>
 
                             <!-- Mô tả -->
-                            {{-- <div class="col-lg-12 mb-3">
+                            <div class="col-lg-12 mb-3">
                                 <label for="sub_description" class="form-label">Mô tả ngắn</label>
-                                <textarea id="sub_description" class="form-control" name="sub_description" rows="10">{!! old('sub_description') !!}</textarea>
-                            </div> --}}
+                                <textarea class="form-control" name="sub_description" rows="3">{{ old('sub_description') }}</textarea>
+                            </div>
+
                             <div class="col-lg-12">
                                 <label for="description" class="form-label">Mô tả chi tiết</label>
                                 <textarea id="description" class="form-control" name="description" rows="10">{!! old('description') !!}</textarea>

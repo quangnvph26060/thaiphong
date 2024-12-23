@@ -1,12 +1,12 @@
 @extends('frontend.layouts.master')
 
-@section('title', $product->title_seo)
-@section('description', $product->description_seo)
+@section('title', $product->title_seo ?? $product->title)
+@section('description', $product->description_seo ?? $product->sub_description)
 @section('keywords', $product->keyword_seo)
 
 
-@section('og_title', $product->title_seo)
-@section('og_description', $product->description_seo)
+@section('og_title', $product->title_seo ?? $product->title)
+@section('og_description', $product->description_seo ?? $product->sub_description)
 @section('og_image', showImage($product->main_image))
 {{-- html_entity_decode --}}
 
@@ -70,9 +70,9 @@
                                         <input type="hidden" name="product_sale_price" value="0" />
                                     </div>
                                     <hr class="divider mt-0" />
-                                    @if ($product->sub_description)
-                                        <div class="product-content-des">
-                                            {!! $product->sub_description !!}
+                                    {{-- @if ($product->sub_description) --}}
+                                        {{-- <div class="product-content-des"> --}}
+                                            {{-- {!! $product->sub_description !!} --}}
                                             {{-- <p class="mb-1 mt-3">
                                             Nguồn gốc: {{ $product->source }}
                                         </p>
@@ -86,9 +86,9 @@
                                         </p>
 
                                         --}}
-                                        </div>
+                                        {{-- </div>
                                         <hr class="divider" />
-                                    @endif
+                                    @endif --}}
 
 
 
@@ -109,7 +109,8 @@
                                                             ₫{{ number_format($product->price, 0, '', '.') }}
                                                         </span>
                                                     @else
-                                                        Giá chỉ từ: <span style="color: red; font-weight: bold; margin-left: 35px;">
+                                                        Giá chỉ từ: <span
+                                                            style="color: red; font-weight: bold; margin-left: 35px;">
                                                             ₫{{ number_format($product->price, 0, '', '.') }}
                                                         </span>
                                                     @endif

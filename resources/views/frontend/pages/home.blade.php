@@ -40,7 +40,9 @@
                             <div class="content-widget">
                                 <div class="d-flex  align-items-center">
                                     <div class="border-end catalogues">
-                                        {{ $catalog->name }}
+                                        <h2 style="font-size: 1.25rem">
+                                            {{ $catalog->name }}
+                                        </h2>
                                     </div>
                                     <div class="more">
                                         <a href="{{ route('product.detail', $catalog->slug) }}">
@@ -77,7 +79,8 @@
                                                                         <a href="{{ route('contact', $product->slug) }}"
                                                                             rel="nofollow"
                                                                             class="btn btn--m btn-primary btn-item"
-                                                                            title="{{ $product->name }}">Liên hệ <i class="fa fa-phone-alt ml-2"
+                                                                            title="{{ $product->name }}">Liên hệ <i
+                                                                                class="fa fa-phone-alt ml-2"
                                                                                 aria-hidden="true"></i></a>
                                                                     </div>
                                                                 </figcaption>
@@ -96,129 +99,98 @@
                 </div>
             </div>
         @endforeach
-        <div class="row">
-            <div class="widget widget-post_category widget-35 col-12 col-md-12" data-widget-id="35"
-                data-widget="post_category">
-                <div class="widget_post_body style5"
-                    style="
+
+        @if ($news->isNotEmpty())
+            <div class="row">
+                <div class="widget widget-post_category widget-35 col-12 col-md-12" data-widget-id="35"
+                    data-widget="post_category">
+                    <div class="widget_post_body style5"
+                        style="
                     background-image: url({{ asset('frontend/assets/image/bg_blog.jpg') }});
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: cover;
                     ">
-                    <div class="container">
-                        <div class="content-widget" data-limit="4" data-type="5" data-post-size="post_medium">
-                            <div class="text-center">
-                                <div class="box_heading">
-                                    <h2 class="heading">
-                                        <a style="color: #cc0000 !important" href="{{ route('news.list') }}">TIN TỨC NỔI BẬT</a>
-                                    </h2>
-                                    <div class="line-hg"><span></span></div>
-                                    <div class="svg-wrap">
-                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125.656px"
-                                            height="125.655px" viewBox="0 0 125.656 125.655"
-                                            style="enable-background: new 0 0 125.656 125.655" xml:space="preserve">
-                                            <g>
-                                                <path
-                                                    d="M88.947,67.734c0,1.544-1.252,2.802-2.801,2.802H68.989c-1.401,0-2.583-1.028-2.763-2.419l-3.033-21.769l-6.123,56.013    c-0.147,1.319-1.216,2.375-2.561,2.474c-0.079,0.005-0.145,0.013-0.229,0.013c-1.251,0-2.354-0.822-2.685-2.043l-9.126-32.46    l-8.988,17.078c-0.539,1.028-1.667,1.653-2.813,1.479c-1.159-0.139-2.101-0.976-2.388-2.101l-4.375-17.49H2.803    C1.262,69.312,0,68.052,0,66.51c0-1.549,1.262-2.802,2.803-2.802h23.285c1.284,0,2.412,0.875,2.72,2.123l3.124,12.487l8.843-16.789    c0.528-1.023,1.631-1.638,2.764-1.488c1.137,0.121,2.089,0.925,2.412,2.024l7.117,25.319l7.018-64.09    c0.149-1.401,1.321-2.465,2.743-2.487c1.576,0.134,2.617,1.026,2.813,2.426l5.79,41.699h14.719    C87.695,64.933,88.947,66.192,88.947,67.734z M103.771,64.933h-8.862c-1.54,0-2.802,1.26-2.802,2.802    c0,1.544,1.262,2.802,2.802,2.802h8.862c1.537,0,2.802-1.258,2.802-2.802C106.573,66.192,105.308,64.933,103.771,64.933z    M122.854,64.933h-9.431c-1.537,0-2.802,1.26-2.802,2.802c0,1.544,1.265,2.802,2.802,2.802h9.431c1.536,0,2.802-1.258,2.802-2.802    C125.656,66.192,124.39,64.933,122.854,64.933z">
-                                                </path>
-                                            </g>
-                                        </svg>
+                        <div class="container">
+                            <div class="content-widget" data-limit="4" data-type="5" data-post-size="post_medium">
+                                <div class="text-center">
+                                    <div class="box_heading">
+                                        <a style="color: #cc0000 !important; font-size: 1.6rem; font-weight: 600"
+                                            href="{{ route('news.list') }}">TIN TỨC NỔI
+                                            BẬT</a>
+                                        <div class="line-hg"><span></span></div>
+                                        <div class="svg-wrap">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                width="125.656px" height="125.655px" viewBox="0 0 125.656 125.655"
+                                                style="enable-background: new 0 0 125.656 125.655" xml:space="preserve">
+                                                <g>
+                                                    <path
+                                                        d="M88.947,67.734c0,1.544-1.252,2.802-2.801,2.802H68.989c-1.401,0-2.583-1.028-2.763-2.419l-3.033-21.769l-6.123,56.013    c-0.147,1.319-1.216,2.375-2.561,2.474c-0.079,0.005-0.145,0.013-0.229,0.013c-1.251,0-2.354-0.822-2.685-2.043l-9.126-32.46    l-8.988,17.078c-0.539,1.028-1.667,1.653-2.813,1.479c-1.159-0.139-2.101-0.976-2.388-2.101l-4.375-17.49H2.803    C1.262,69.312,0,68.052,0,66.51c0-1.549,1.262-2.802,2.803-2.802h23.285c1.284,0,2.412,0.875,2.72,2.123l3.124,12.487l8.843-16.789    c0.528-1.023,1.631-1.638,2.764-1.488c1.137,0.121,2.089,0.925,2.412,2.024l7.117,25.319l7.018-64.09    c0.149-1.401,1.321-2.465,2.743-2.487c1.576,0.134,2.617,1.026,2.813,2.426l5.79,41.699h14.719    C87.695,64.933,88.947,66.192,88.947,67.734z M103.771,64.933h-8.862c-1.54,0-2.802,1.26-2.802,2.802    c0,1.544,1.262,2.802,2.802,2.802h8.862c1.537,0,2.802-1.258,2.802-2.802C106.573,66.192,105.308,64.933,103.771,64.933z    M122.854,64.933h-9.431c-1.537,0-2.802,1.26-2.802,2.802c0,1.544,1.265,2.802,2.802,2.802h9.431c1.536,0,2.802-1.258,2.802-2.802    C125.656,66.192,124.39,64.933,122.854,64.933z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container" style="margin-top: 70px; overflow-x: hidden">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($news as $item)
+                                            <div class="swiper-slide">
+                                                <div class="post-item relative" data-id="{{ $item->id }}">
+                                                    <figure class="photoframe relative">
+                                                        <div class="relative img-post">
+                                                            <a href="{{ route('news.detail', $item->slug) }}"
+                                                                class="d-block relative text-center">
+                                                                <img src="{{ showImage($item->featured_image) }}"
+                                                                    width="100%" height="100%" class="lazyload"
+                                                                    alt="{{ $item->subject }}" />
+                                                            </a>
+                                                        </div>
+                                                        <figcaption class="info-post" style="padding: 10px 0">
+
+                                                            <p class="f-size-medium post-view-date">
+                                                                <span class="post-date">
+                                                                    <i class="fas fa-calendar-alt"></i>
+                                                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
+                                                                    <span class="d-none-sidebar"> | </span>
+                                                                </span>
+                                                                <span class="post-item-view">
+                                                                    <i class="fas fa-eye"></i> {{ $item->view }} Lượt
+                                                                    xem
+                                                                </span>
+                                                            </p>
+
+                                                            <hr>
+                                                            <div class="wrap-two-lines post-title">
+                                                                <a href="{{ route('news.detail', $item->slug) }}"
+                                                                    class="two-lines" aria-label="{{ $item->subject }}">
+                                                                    {{ $item->subject }}.
+                                                                </a>
+                                                            </div>
+
+                                                            <div class="description">
+                                                                {{ \Str::words($item->summary, 10, ' [...]') }}
+                                                            </div>
+
+                                                            <div class="read-more">
+                                                                <a href="{{ route('news.detail', $item->slug) }}">
+                                                                    Xem thêm &rsaquo;&rsaquo;</a>
+                                                            </div>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <div class="swiper-container" style="margin-top: 70px; overflow-x: hidden">
-                                <div class="swiper-wrapper">
-                                    @foreach ($news as $item)
-                                        <div class="swiper-slide">
-                                            <div class="post-item relative" data-id="{{ $item->id }}">
-                                                <figure class="photoframe relative">
-                                                    <div class="relative img-post">
-                                                        <a href="{{ route('news.detail', $item->slug) }}"
-                                                            class="d-block relative text-center">
-                                                            <img src="{{ showImage($item->featured_image) }}"
-                                                                width="100%" height="100%" class="lazyload"
-                                                                alt="{{ $item->subject }}" />
-                                                        </a>
-                                                    </div>
-                                                    <figcaption class="info-post" style="padding: 10px 0">
-
-                                                        <p class="f-size-medium post-view-date">
-                                                            <span class="post-date">
-                                                                <i class="fas fa-calendar-alt"></i>
-                                                                {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
-                                                                <span class="d-none-sidebar"> | </span>
-                                                            </span>
-                                                            <span class="post-item-view">
-                                                                <i class="fas fa-eye"></i> {{ $item->view }} Lượt xem
-                                                            </span>
-                                                        </p>
-
-                                                        <hr>
-                                                        <div class="wrap-two-lines post-title">
-                                                            <a href="{{ route('news.detail', $item->slug) }}"
-                                                                class="two-lines" aria-label="{{ $item->subject }}">
-                                                                {{ $item->subject }}.
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="description">
-                                                            {{ \Str::words($item->summary, 10, ' [...]') }}
-                                                        </div>
-
-                                                        <div class="read-more">
-                                                            <a href="{{ route('news.detail', $item->slug) }}">
-                                                                Xem thêm &rsaquo;&rsaquo;</a>
-                                                        </div>
-                                                    </figcaption>
-                                                </figure>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
 
-        {{-- <div class="row">
-            <div class="widget widget-service widget-63 col-12 col-md-12" data-widget-id="63" data-widget="service">
-                <div class="service-list style3 content-color"
-                    style="color: #cc0000 !important; background-color: #ffffff">
-                    <div class="container">
-                        <div class="content-widget">
-                            <div class="clearfix widget-content">
-                                <div class="owl-carousel d-carousel w-service-style3" data-loop="1" data-nav="false"
-                                    data-margin="20" data-autoplayTimeout="5000" data-responsive-0="1"
-                                    data-responsive-576="2" data-responsive-768="3" data-responsive-992="3"
-                                    data-autoplay="1">
-
-                                    @foreach ($services as $service)
-                                        <div class="item-service text-center">
-                                            <a href="javascript:void(0)">
-                                                <div class="icon">
-                                                    <img src="{{ showImage($service->logo) }}" width="100%"
-                                                        height="100%" data-src="{{ showImage($service->logo) }}"
-                                                        class="owl-lazy max-w-100" alt="{{ $service->name }}"
-                                                        aria-label="{{ $service->name }}" />
-                                                </div>
-                                            </a>
-                                            <div class="info">
-                                                <a class="title-info" href="javascript:void(0)">{{ $service->name }}</a>
-                                                <p>{{ $service->description }}</p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
 
         <div class="consult-section">
             <div class="container">
@@ -231,9 +203,9 @@
                     <div class="col-lg-8 d-flex align-items-center">
                         <form class="consult-form w-100 contact-form" action="{{ route('contact') }}" id="contact_form">
                             {{-- <h2 >Bạn đang cần được tư vấn</h2> --}}
-                            <h2 style="font-size: 1.8rem; color: #cc0000 !important">
+                            <p style="font-size: 1.8rem; color: #cc0000 !important; font-weight: 600">
                                 Bạn đang cần được tư vấn
-                            </h2>
+                            </p>
                             <p style="font-weight: 500">Chúng tôi sẽ liên hệ với bạn trong ít phút nữa.</p>
 
                             <div class="row g-3">
@@ -274,6 +246,8 @@
 @endsection
 
 @push('scripts')
+    <script type="application/ld+json">
+    </script>
     <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
 
     <script>

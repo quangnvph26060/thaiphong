@@ -1,7 +1,9 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Danh sách sản phẩm')
+@section('title', 'Sản phẩm')
 
+@section('h1', 'SẢN PHẨM')
+@section('h2', 'SẢN PHẨM')
 
 @section('content')
     <x-breadcrumb :title="'Sản phẩm'" :name="$category->name ?? ''" :route="route('product.list')" />
@@ -11,20 +13,6 @@
             <div class="row clearfix product-list">
                 <div class="col-lg-8 product-view">
                     <div class="row clearfix sort_products">
-                        {{-- <div class="col-lg-7 col-12 col-sm-8">
-                            <p class="d-inline-middle f-size-medium">Sắp xếp:</p>
-                            <div class="clearfix d-inline-middle">
-                                <div class="wrap-select f-size-medium relative">
-                                    <select class="select_products">
-                                        <option value="null">Chọn</option>
-                                        <option value="sort_price=desc">Giá giảm dần</option>
-                                        <option value="sort_price=asc">Giá tăng dần</option>
-                                        <option value="sort_date=desc">Từ mới đến cũ</option>
-                                        <option value="sort_date=asc">Từ cũ đến mới</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div> --}}
                         <div class="col-lg-5 col-12 col-sm-4 grid-right d-none">
                             <p class="d-inline-middle f-size-medium"></p>
                             <div class="clearfix d-inline-middle">
@@ -89,3 +77,9 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="application/ld+json">
+    {!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+@endpush

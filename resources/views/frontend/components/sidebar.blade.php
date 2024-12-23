@@ -3,7 +3,7 @@
         <div class="widget-menu style2" style="" data-id="0">
             <div class="box_heading">
                 <div class="heading" style="color: #000000 !important">
-                    Danh mục
+                    Danh mục sản phẩm
                 </div>
                 <div class="line-hg"><span></span></div>
                 <div class="svg-wrap">

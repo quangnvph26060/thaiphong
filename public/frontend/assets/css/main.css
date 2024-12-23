@@ -144,10 +144,10 @@
 }
 
 .more {
-    font-size: 12px;
+    font-size: 1rem;
     text-align: right;
     background: #f37022 !important;
-    padding: 7.4px 15px;
+    padding: 8.4px 15px;
     border-radius: 0px 5px 5px 0px;
     flex: 1;
 }

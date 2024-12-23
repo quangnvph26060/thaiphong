@@ -152,10 +152,25 @@
     flex: 1;
 }
 
+body h2 {
+    font-size: 1.6em;
+}
+
 .more a {
     color: white !important;
 }
 
 .more a:hover {
     text-decoration: underline;
+}
+
+#tab-mo-ta {
+    font-family: "Open Sans", sans-serif !important;
+}
+
+#tab-mo-ta h2 {
+    font-size: 1.6em;
+}
+#tab-mo-ta h3 {
+    font-size: 1.25em;
 }

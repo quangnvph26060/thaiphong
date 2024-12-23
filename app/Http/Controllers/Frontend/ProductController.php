@@ -51,6 +51,7 @@ class ProductController extends Controller
             ->limit(8)
             ->get();
 
+
         return view('frontend.pages.product.detail', compact('product', 'relatedProducts'));
     }
 

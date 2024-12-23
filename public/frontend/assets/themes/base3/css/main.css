@@ -194,7 +194,7 @@ body.layout_fullwidth .container {
 .widget-sidebar > .widget > .widget-menu .heading,
 .widget-sidebar > .widget-post_category > .widget_post_body .heading {
     font-weight: bold !important;
-    font-size: 24px;
+    font-size: 1.6rem;
     border-bottom: 1px solid #8e8e8e;
     padding-bottom: 15px;
     margin-bottom: 15px !important;
@@ -775,7 +775,7 @@ a:hover {
 .box_heading .heading {
     position: relative;
     margin-bottom: 25px;
-    font-size: 135%;
+    font-size: 1.6rem;
     line-height: 1.25;
 }
 .box_heading .subtitle {

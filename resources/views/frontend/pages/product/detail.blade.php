@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title', $product->title_seo ?? $product->title)
-@section('description', $product->description_seo ?? $product->sub_description)
+@section('description', $product->sub_description ?? $product->description_seo)
 @section('keywords', $product->keyword_seo)
 
 
@@ -59,9 +59,9 @@
                                 <input type="hidden" name="is_detail" value="true" />
                                 <div class="detail-info">
                                     <div class="product-title">
-                                        <h1 class="product-detail-title">
+                                        <h2 class="product-detail-title">
                                             {{ $product->name }}
-                                        </h1>
+                                        </h2>
                                     </div>
                                     <input type="hidden" name="product_title" value="{{ $product->name }}" />
                                     <!-- Giá -->
@@ -71,9 +71,9 @@
                                     </div>
                                     <hr class="divider mt-0" />
                                     {{-- @if ($product->sub_description) --}}
-                                        {{-- <div class="product-content-des"> --}}
-                                            {{-- {!! $product->sub_description !!} --}}
-                                            {{-- <p class="mb-1 mt-3">
+                                    {{-- <div class="product-content-des"> --}}
+                                    {{-- {!! $product->sub_description !!} --}}
+                                    {{-- <p class="mb-1 mt-3">
                                             Nguồn gốc: {{ $product->source }}
                                         </p>
                                         <p class="mb-1">
@@ -86,7 +86,7 @@
                                         </p>
 
                                         --}}
-                                        {{-- </div>
+                                    {{-- </div>
                                         <hr class="divider" />
                                     @endif --}}
 
@@ -184,41 +184,14 @@
                                 <div class="d-inline-middle addthis-widget-container">
                                     <ul class="clearfix horizontal-list social-icons">
                                         <li class="relative">
-                                            {{-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}"
-                                                rel="nofollow" target="_blank" class="f-size-ex-large textAlign-center">
-                                                <i class="fab fa-facebook-f"></i>
-                                            </a> --}}
+
                                             <div class="fb-share-button" data-href="{{ url()->current() }}"
                                                 data-layout="" data-size=""><a target="_blank"
                                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}&amp;src=sdkpreparse"
                                                     class="fb-xfbml-parse-ignore">Chia sẻ</a>
                                             </div>
                                         </li>
-                                        {{-- <li class="relative">
-                                            <a href="https://twitter.com/intent/tweet?url={{ url()->current() }}"
-                                                rel="nofollow" target="_blank" class="f-size-ex-large textAlign-center">
-                                                <i class="fab fa-twitter"></i>
-                                            </a>
-                                        </li>
-                                        <li class="relative">
-                                            <a class="f-size-ex-large textAlign-center" rel="nofollow"
-                                                href="https://www.linkedin.com/sharing/share-offsite/?url={{ url()->current() }}"
-                                                target="_blank" aria-label="Linkedin">
-                                                <i class="fab fa-linkedin-in"></i>
-                                            </a>
-                                        </li>
-                                        <li class="relative">
-                                            <a href="http://pinterest.com/pin/create/link/?url={{ url()->current() }}&media=https://media.loveitopcdn.com/39908/thumb/033906-may-sieu-am-sonoscape-m22.jpg"
-                                                rel="nofollow" target="_blank" class="f-size-ex-large textAlign-center">
-                                                <i class="fab fa-pinterest"></i>
-                                            </a>
-                                        </li>
-                                        <li class="relative">
-                                            <a href="https://www.tumblr.com/share/link?url={{ url()->current() }}"
-                                                rel="nofollow" target="_blank" class="f-size-ex-large textAlign-center">
-                                                <i class="fab fa-tumblr"></i>
-                                            </a>
-                                        </li> --}}
+
                                     </ul>
                                 </div>
                             </div>
@@ -236,13 +209,7 @@
                                     </a>
                                 </li>
 
-                                {{-- <li>
-                                    <a href="#tab-comment" class="title-tab tab-item" data-toggle="tab"
-                                        aria-expanded="true">
-                                        <span class="border-style7"></span>
-                                        Bình luận
-                                    </a>
-                                </li> --}}
+
                             </ul>
                         </div>
                         <!-- Tab panes -->
@@ -251,67 +218,7 @@
                                 {!! $product->description !!}
                             </div>
 
-                            {{-- <div class="pro-info-tab tab-pane" id="tab-comment">
-                                <div class="wb-comment">
-                                    <div id="system_comments" data-commentable_type="product" data-commentable_id="419"
-                                        data-censorship="1">
-                                        <div class="row">
-                                            <div id="data-comments">
-                                                <ul id="comments-list" class="comments-list col-md-12 comment-container">
-                                                </ul>
-                                                <p
-                                                    style="
-                                                        width: 100%;
-                                                        text-align: center;
-                                                        margin-bottom: 20px;
-                                                    ">
-                                                    <a class="more_comment" style="display: none" href="#">Xem
-                                                        thêm</a>
-                                                </p>
-                                            </div>
-                                            <div class="comment-form comment-main col-md-12">
-                                                <form action="/submit-comment" method="POST"
-                                                    class="formcomment width-100">
-                                                    <ul>
-                                                        <li class="clearfix">
-                                                            <div class="half-column">
-                                                                <input type="text" required name="name"
-                                                                    class="form-control width-100" placeholder="Họ tên*"
-                                                                    value="" />
-                                                            </div>
-                                                            <input type="hidden" name="parent_id" value="0" />
-                                                            <input type="hidden" name="parent_name"
-                                                                value="comment-main" />
-                                                        </li>
-                                                        <li>
-                                                            <div>
-                                                                <textarea name="content" required class="form-control width-100" placeholder="Bình luận*"></textarea>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div style="display: flow-root">
-                                                                <div class="text-right float-right">
-                                                                    <button type="submit"
-                                                                        class="btn-item btn btn--l btn-primary">
-                                                                        Gửi
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        var comment_avatar =
-                                            "https://static.loveitopcdn.com/themes/base1/images/avatar/avatar.png";
-                                        var comment_avatar_admin =
-                                            "https://static.loveitopcdn.com/themes/base1/images/avatar/avatar.png";
-                                        var trans_reply = "Trả lời";
-                                    </script>
-                                </div>
-                            </div> --}}
+
                         </div>
                     </div>
                     <div class="box_heading">
@@ -392,28 +299,46 @@
     <script src="{{ asset('frontend/assets/plugins/elevatezoom-3.0.8/jquery.elevatezoom.min.js') }}"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const swiper = new Swiper('.swiper-container', {
-                slidesPerView: 2,
-                spaceBetween: 10,
-                loop: true,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 1
-                    },
-                    768: {
-                        slidesPerView: 3
-                    },
-                    1024: {
-                        slidesPerView: 4
-                    },
-                },
+        $(function() {
+
+            const images = document.querySelectorAll('#tab-mo-ta img');
+
+            images.forEach(img => {
+                // Lấy giá trị alt của từng ảnh
+                const altText = img.alt;
+
+                // Tạo thẻ div để hiển thị alt
+                const altDiv = document.createElement('div');
+                altDiv.classList.add('image-alt');
+                altDiv.textContent = altText;
+
+                // Thêm thẻ altDiv bên dưới ảnh
+                img.parentElement.appendChild(altDiv);
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+                const swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1
+                        },
+                        768: {
+                            slidesPerView: 3
+                        },
+                        1024: {
+                            slidesPerView: 4
+                        },
+                    },
+                });
+            });
     </script>
 @endpush
 
@@ -440,6 +365,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .image-alt {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+            background: rgba(128, 128, 128, .5)
         }
     </style>
 @endpush

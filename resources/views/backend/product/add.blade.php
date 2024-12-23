@@ -220,18 +220,7 @@
                 content_style: 'body { font-family:Arial,sans-serif; font-size:14px }',
             });
 
-            // CKEDITOR.replace('sub_description', {
 
-            //     filebrowserImageUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-            //     filebrowserUploadMethod: 'form',
-            //     height: 150
-            // });
-
-            // CKEDITOR.replace('description', {
-            //     filebrowserImageUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
-            //     filebrowserUploadMethod: 'form',
-            //     height: 400
-            // });
 
             const input = document.querySelector('#keyword_seo');
             const tagify = new Tagify(input, {
@@ -290,5 +279,6 @@
         .modal-backdrop.show {
             z-index: 1001 !important;
         }
+
     </style>
 @endpush

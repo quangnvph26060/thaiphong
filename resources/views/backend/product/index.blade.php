@@ -18,6 +18,7 @@
                         <th>Danh mục</th>
                         <th>Bảo hành</th>
                         <th>Giá</th>
+                        <th>Vị trí hiển thị</th>
                         <th style="text-align: center">Hành động</th>
                     </thead>
 
@@ -71,8 +72,10 @@
                         data: 'price',
                         name: 'price'
                     },
-
-
+                    {
+                        data: 'display_position',
+                        name: 'display_position',
+                    },
                     {
                         data: 'action',
                         name: 'action',
@@ -215,6 +218,53 @@
                     }
                 });
             });
+
+            $(document).on('click', '.edit-position', function() {
+                var id = $(this).data('id');
+
+                // Ẩn icon và span hiển thị, hiển thị input
+                $('[data-id="' + id + '"]').hide(); // Ẩn giá trị và icon
+                $('[data-id="' + id + '"]').siblings('input').show(); // Hiển thị ô input
+            });
+
+            // Khi người dùng thay đổi giá trị và nhấn Enter hoặc blur khỏi input
+            $(document).on('blur', '.edit-input', function() {
+                var id = $(this).data('id');
+                var newValue = $(this).val();
+
+                // Gửi dữ liệu mới về server để cập nhật vào cơ sở dữ liệu
+                $.ajax({
+                    url: '{{ route('admin.product.updateDisplayPosition') }}', // Đường dẫn bạn sẽ xử lý cập nhật
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        display_position: newValue,
+                        _token: $('meta[name="csrf-token"]').attr('content') // CSRF token
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            console.log(id);
+
+                            console.log($(`.display-position-value-${id}`));
+
+                            // Cập nhật lại giá trị hiển thị sau khi cập nhật thành công
+                            $(`.display-position-value-${id}`).text(newValue)
+                                .show(); // Hiển thị lại giá trị mới
+
+                            $('[data-id="' + id + '"]').siblings('button.edit-position')
+                                .show(); // Hiển thị lại icon chỉnh sửa
+
+                            $('[data-id="' + id + '"]').siblings('input').hide(); // Ẩn ô input
+                        } else {
+                            alert('Cập nhật không thành công!');
+                        }
+                    },
+                    error: function() {
+                        alert('Có lỗi xảy ra!');
+                    }
+                });
+            });
+
         })
     </script>
 @endpush

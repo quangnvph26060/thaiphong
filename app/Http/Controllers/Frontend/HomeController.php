@@ -29,8 +29,10 @@ class HomeController extends Controller
             ->get();
 
         $catalogues->each(function ($category) {
-            $category->setRelation('product', $category->product()->latest()->take(10)->get());
+            // Sắp xếp sản phẩm theo display_position tăng dần
+            $category->setRelation('product', $category->product()->orderBy('display_position', 'asc')->latest()->take(10)->get());
         });
+
 
         // $catalogues = Category::with('product')->orderBy('location')->get();
 

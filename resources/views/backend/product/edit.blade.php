@@ -103,12 +103,10 @@
 
                             <div class="form-group mb-3 col-lg-12">
                                 <!-- Ảnh sản phẩm -->
-                                <div class="form-group mb-3">
-                                    <label for="images" class="form-label">Album ảnh</label>
-                                    <input type="file" class="form-control" id="images" name="images[]" multiple
-                                        accept="image/*">
-                                </div>
+                                <label for="" class="form-label">Album ảnh</label>
+                                <div class="album pb-3"></div>
                             </div>
+
 
                             <!-- Mô tả -->
                             <div class="col-lg-12 mb-3">
@@ -193,12 +191,9 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
+
     <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 
 
@@ -215,10 +210,9 @@
                 previewImage.style.display = 'block';
             }
         });
-    </script>
-    <script>
-        $(function() {
 
+
+        $(function() {
 
             tinymce.init({
                 selector: '#description',
@@ -270,106 +264,29 @@
             var existingImages = [];
             var existingImagesConfig = [];
 
-            @foreach ($product->images as $key => $image)
-                existingImages.push('{{ showImage($image) }}');
-                existingImagesConfig.push({
-                    caption: 'Ảnh {{ $loop->index + 1 }}', // Đặt tên cho từng ảnh
-                    size: 12345, // Kích thước file (tùy chỉnh nếu cần)
-                    key: '{{ $key }}', // ID của ảnh
-                    url: '{{ route('admin.product.delete-image', ['id' => $product->id . '-' . $key]) }}' // API xóa ảnh
-                });
-            @endforeach
+            @if (isset($albums))
+                let preloaded = @json($albums);
+            @else
+                let preloaded = [];
+            @endif
 
-            $("#images").fileinput({
-                showPreview: true,
-                allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-                maxFileSize: 2000,
-                browseLabel: 'Chọn ảnh',
-                removeLabel: 'Xóa ảnh',
-                uploadLabel: 'Tải lên',
-                showRemove: true,
-                showUpload: false,
-                previewFileType: 'image',
-                browseIcon: '<i class="fas fa-folder-open"></i>',
-                removeIcon: '<i class="fas fa-trash"></i>',
-
-
-                initialPreview: existingImages,
-                initialPreviewAsData: true,
-                initialPreviewFileType: 'image',
-                initialPreviewConfig: existingImagesConfig,
-                deleteUrl: true,
-            }).on('filedeleted', function(event, key, jqXHR, data) {
-
-                if (jqXHR.responseJSON.status) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "success",
-                        title: jqXHR.responseJSON.message
-                    });
-                } else {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "error",
-                        title: jqXHR.responseJSON.message
-                    });
-                }
-
+            $('.album').imageUploader({
+                preloaded: preloaded,
+                imagesInputName: 'images',
+                preloadedInputName: 'old',
+                maxSize: 2 * 1024 * 1024,
+                maxFiles: 15,
             });
 
-
-            $('.close.fileinput-remove, .fileinput-remove').on('click', function() {
-
-                // Tạo thẻ input hidden
-                var inputHidden = $('<input>', {
-                    type: 'hidden',
-                    name: 'deleteAllImage', // Tên của input
-                    value: '1' // Giá trị của input (có thể là 1 hoặc bất kỳ giá trị nào bạn muốn)
-                });
-
-                // Thêm input vào form (giả sử form có id là 'myForm')
-                $('form').append(inputHidden);
-            });
 
         });
     </script>
 @endpush
 
 @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/image-uploader.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />
     <style>
-        .bootstrap-datetimepicker-widget {
-            font-size: 0.875rem;
-            /* Giảm kích thước font */
-            max-width: 300px;
-            /* Giới hạn chiều rộng */
-        }
-
         .modal-backdrop.show {
             z-index: 1001 !important;
         }

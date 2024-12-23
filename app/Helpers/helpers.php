@@ -30,7 +30,7 @@ function saveImages($request, string $inputName, string $directory = 'images', $
             $img->resize($width, $height);
 
             // Tạo tên file duy nhất
-            $filename = time() . uniqid() . '.' . $image->getClientOriginalExtension();
+            $filename = time() . uniqid() . '.' . 'webp';
 
             // Lưu hình ảnh đã được thay đổi kích thước vào storage
             Storage::disk('public')->put($directory . '/' . $filename, $img->encode());
@@ -51,11 +51,43 @@ function saveImage($request, string $inputName, string $directory = 'images')
 {
     if ($request->hasFile($inputName)) {
         $image = $request->file($inputName);
-        $filename = time() . uniqid() . '.' . $image->getClientOriginalExtension();
+        $filename = time() . uniqid() . '.' . 'webp';
         Storage::disk('public')->put($directory . '/' . $filename, file_get_contents($image->getPathName()));
         return $directory . '/' . $filename;
     }
 }
+
+function saveImagesWithoutResize($request, string $inputName, string $directory = 'images', $isArray = false)
+{
+    $paths = [];
+
+    // Kiểm tra xem có file không
+    if ($request->hasFile($inputName)) {
+        // Lấy tất cả các file hình ảnh
+        $images = $request->file($inputName);
+
+        if (!is_array($images)) {
+            $images = [$images]; // Đưa vào mảng nếu chỉ có 1 ảnh
+        }
+
+        foreach ($images as $key => $image) {
+            // Tạo tên file duy nhất
+            $filename = time() . uniqid() . '.' . 'webp';
+
+            // Lưu ảnh vào storage
+            Storage::disk('public')->putFileAs($directory, $image, $filename);
+
+            // Lưu đường dẫn vào mảng
+            $paths[$key] = $directory . '/' . $filename;
+        }
+
+        // Trả về danh sách các đường dẫn
+        return $isArray ? $paths : $paths[0];
+    }
+
+    return null;
+}
+
 
 function showImage($path, $default = 'image-default.jpg')
 {

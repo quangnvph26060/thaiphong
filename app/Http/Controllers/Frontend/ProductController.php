@@ -22,9 +22,9 @@ class ProductController extends Controller
             ->paginate(12);
 
 
-        $schema = generateListSchema($products, 'Danh sách sản phẩm');
+        // $schema = generateListSchema($products, 'Danh sách sản phẩm');
 
-        return view('frontend.pages.product.list', compact('products', 'schema'));
+        return view('frontend.pages.product.list', compact('products'));
     }
 
     public function detail($slug)
@@ -41,37 +41,8 @@ class ProductController extends Controller
             if ($category) {
                 $products = Product::where('category_id', $category->id)->paginate(12);
 
-                $itemListElements  = [];
-
-                foreach ($products as $index => $product) {
-                    $itemListElements[] = [
-                        '@type' => 'ListItem',
-                        'position' => $index + 1,
-                        'item' => [
-                            '@type' => 'Product',
-                            'name' => $product->name,
-                            'image' => $product->main_image,
-                            'url' => route('product.detail', $product->slug),
-                            'description' => strip_tags($product->description),
-                            'offers' => [
-                                '@type' => 'Offer',
-                                'price' => $product->price,
-                                'availability' => 'https://schema.org/InStock',
-                            ]
-                        ]
-                    ];
-                }
-
-                $schema = [
-                    '@context' => 'https://schema.org',
-                    '@type' => 'ItemList',
-                    'name' => $category->name,
-                    'url' => url()->current(),
-                    'itemListElement' => $itemListElements,
-                ];
-
                 // dd($product);
-                return view('frontend.pages.product.list', compact('products', 'category', 'schema'));
+                return view('frontend.pages.product.list', compact('products', 'category'));
             }
 
             // Nếu không tìm thấy danh mục tương ứng, điều hướng về trang danh sách sản phẩm mặc định
@@ -84,14 +55,7 @@ class ProductController extends Controller
             ->limit(8)
             ->get();
 
-        $schema = generateSchema('Product', [
-            'name' => $product->name,
-            'image' => showImage($product->main_image),
-            'description' => strip_tags($product->description),
-            'price' => $product->price,
-        ]);
-
-        return view('frontend.pages.product.detail', compact('product', 'relatedProducts', 'schema'));
+        return view('frontend.pages.product.detail', compact('product', 'relatedProducts'));
     }
 
     public function download(string $id)

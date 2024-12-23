@@ -90,11 +90,8 @@
 
                             <div class="form-group mb-3 col-lg-12">
                                 <!-- Ảnh sản phẩm -->
-                                <div class="form-group mb-3">
-                                    <label for="images" class="form-label">Album ảnh</label>
-                                    <input type="file" class="form-control" id="images" name="images[]" multiple
-                                        accept="image/*">
-                                </div>
+                                <label for="" class="form-label">Album ảnh</label>
+                                <div class="album pb-3"></div>
                             </div>
 
                             <!-- Mô tả -->
@@ -108,22 +105,30 @@
                                 <textarea id="description" class="form-control" name="description" rows="10">{!! old('description') !!}</textarea>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group mb-3">
-                                <label for="title_seo" class="form-label">Tiêu đề SEO</label>
-                                <input value="{{ old('title_seo') }}" type="text" class="form-control"
-                                    name="title_seo" id="title_seo" placeholder="Nhập tiêu đề SEO">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="description_seo" class="form-label">Mô tả SEO</label>
-                                <input value="{{ old('description_seo') }}" type="text" class="form-control"
-                                    name="description_seo" id="description_seo" placeholder="Nhập mô tả SEO">
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="keyword_seo" class="form-label">Từ khóa SEO</label>
-                                <input value="{{ old('keyword_seo') }}" type="text" class="form-control"
-                                    name="keyword_seo" id="keyword_seo" placeholder="Nhập từ khóa SEO">
-                            </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Cấu hình seo</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group mb-3">
+                            <label for="title_seo" class="form-label">Tiêu đề SEO</label>
+                            <input value="{{ old('title_seo') }}" type="text" class="form-control" name="title_seo"
+                                id="title_seo" placeholder="Nhập tiêu đề SEO">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="description_seo" class="form-label">Mô tả SEO</label>
+                            <textarea class="form-control" name="description_seo" id="description_seo" cols="30" rows="5"
+                                placeholder="Nhập mô tả SEO"></textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="keyword_seo" class="form-label">Từ khóa SEO</label>
+                            <input value="{{ old('keyword_seo') }}" type="text" class="form-control"
+                                name="keyword_seo" id="keyword_seo" placeholder="Nhập từ khóa SEO">
                         </div>
                     </div>
                 </div>
@@ -177,23 +182,21 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/js/fileinput.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+    <script src="{{ asset('backend/assets/js/image-uploader.min.js') }}"></script>
 
     <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
 
-    {{-- <script src="{{ asset('ckeditor/ckeditor.js') }}"></script> --}}
-
-    {{-- <script>
-        const BASE_URL = "{{ url('/') }}";
-    </script> --}}
-
     <script>
         $(function() {
+
+            $('.album').imageUploader({
+                preloaded: [],
+                imagesInputName: 'images',
+                preloadedInputName: 'old',
+                maxSize: 2 * 1024 * 1024,
+                maxFiles: 15,
+            });
 
             tinymce.init({
                 selector: '#description',
@@ -244,41 +247,16 @@
             }
 
 
-            $("#images").fileinput({
-                showPreview: true, // Hiển thị ảnh preview
-                allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif', 'jfif'], // Định dạng file chấp nhận
-                maxFileSize: 2000, // Kích thước file tối đa (KB)
-                browseLabel: 'Chọn ảnh', // Nhãn cho nút chọn ảnh
-                removeLabel: 'Xóa ảnh', // Nhãn cho nút xóa ảnh
-                uploadLabel: 'Tải lên', // Nhãn cho nút tải lên
-                showRemove: true, // Hiển thị nút xóa
-                showUpload: false, // Ẩn nút upload (nếu bạn không cần)
-                previewFileType: 'image', // Đảm bảo chỉ hiển thị file ảnh
-                browseIcon: '<i class="fas fa-folder-open"></i>', // Icon cho nút chọn file
-                removeIcon: '<i class="fas fa-trash"></i>' // Icon cho nút xóa file
-            });
         });
     </script>
 @endpush
 
 @push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('backend/assets/css/image-uploader.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css" />
     <style>
-        .bootstrap-datetimepicker-widget {
-            font-size: 0.875rem;
-            /* Giảm kích thước font */
-            max-width: 300px;
-            /* Giới hạn chiều rộng */
-        }
-
         .modal-backdrop.show {
             z-index: 1001 !important;
         }
-
     </style>
 @endpush

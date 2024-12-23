@@ -128,3 +128,62 @@ function formatString($json = null)
 
     return $keywordsString;
 }
+
+function generateSchema($type, $data)
+{
+    $schemas = [
+        'WebPage' => [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => $data['name'] ?? 'Default Page',
+            'url' => $data['url'] ?? url('/')
+        ],
+        'Product' => [
+            '@context' => 'https://schema.org',
+            '@type' => 'Product',
+            'name' => $data['name'],
+            'image' => $data['image'],
+            'description' => $data['description'],
+            'offers' => [
+                '@type' => 'Offer',
+                'priceCurrency' => 'VND',
+                'price' => $data['price'],
+                'availability' => 'https://schema.org/InStock'
+            ]
+        ]
+    ];
+
+    return $schemas[$type] ?? [];
+}
+
+function generateListSchema($products, $listName)
+{
+    $itemListElements = [];
+
+    foreach ($products as $index => $product) {
+        $itemListElements[] = [
+            '@type' => 'ListItem',
+            'position' => $index + 1,
+            'item' => [
+                '@type' => 'Product',
+                'name' => $product->name,
+                'image' => $product->main_image,
+                'url' => route('product.detail', $product->slug),
+                'description' => strip_tags($product->description),
+                'offers' => [
+                    '@type' => 'Offer',
+                    'price' => $product->price,
+                    'availability' => 'https://schema.org/InStock',
+                ],
+            ],
+        ];
+    }
+
+    return [
+        '@context' => 'https://schema.org',
+        '@type' => 'ItemList',
+        'name' => $listName,
+        'url' => url()->current(),
+        'itemListElement' => $itemListElements,
+    ];
+}

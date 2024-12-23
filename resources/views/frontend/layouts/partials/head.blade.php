@@ -6,13 +6,13 @@
 
 <title>@yield('title', $setting->seo_title ?? env('APP_NAME'))</title>
 <meta name="description" content="@yield('description', $setting->seo_description)">
-<meta name="keywords" content="@yield('keywords', formatString($setting->seo_keywords) ?? env('APP_NAME'))">
+<meta name="keywords" content="@yield('keywords', formatString($setting->seo_keywords))">
 
 <meta property="fb:app_id" content="1234567890" />
 <meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="@yield('og_title', $setting->seo_title ?? env('APP_NAME'))" />
-<meta property="og:description" content="@yield('og_description', $setting->seo_description ?? env('APP_NAME'))" />
+<meta property="og:description" content="@yield('og_description', $setting->seo_description)" />
 <meta property="og:site_name" content="{{ $setting->company }}" />
 <meta property="og:image" content="@yield('og_image', showImage($setting->logo))" />
 

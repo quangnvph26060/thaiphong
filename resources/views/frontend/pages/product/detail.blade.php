@@ -4,6 +4,8 @@
 @section('description', $product->sub_description ?? $product->description_seo)
 @section('keywords', $product->keyword_seo)
 
+@section('h1', $product->title)
+@section('h2', $product->title)
 
 @section('og_title', $product->title_seo ?? $product->title)
 @section('og_description', $product->description_seo ?? $product->sub_description)
@@ -318,27 +320,31 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-                const swiper = new Swiper('.swiper-container', {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                    loop: true,
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 2,
+                spaceBetween: 10,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1
                     },
-                    breakpoints: {
-                        640: {
-                            slidesPerView: 1
-                        },
-                        768: {
-                            slidesPerView: 3
-                        },
-                        1024: {
-                            slidesPerView: 4
-                        },
+                    768: {
+                        slidesPerView: 3
                     },
-                });
+                    1024: {
+                        slidesPerView: 4
+                    },
+                },
             });
+        });
+    </script>
+
+    <script type="application/ld+json">
+        {!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
 @endpush
 

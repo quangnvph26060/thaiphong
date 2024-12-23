@@ -4,6 +4,9 @@
 @section('description', $introduction->description_seo)
 @section('keywords', $introduction->keyword_seo)
 
+@section('h1', $introduction->name)
+@section('h2', $introduction->name)
+
 
 @section('og_title', $introduction->title_seo)
 @section('og_description', $introduction->description_seo)
@@ -72,3 +75,31 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "headline": "{{ $introduction->name }}",
+            "description": "{{ $introduction->description_seo }}",
+            "url": "{{ url()->current() }}",
+            "datePublished": "{{ $introduction->created_at }}",
+            "dateModified": "{{ $introduction->updated_at }}",
+            "publisher": {
+                "@type": "Organization",
+                "name": "{{ $setting->company }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ showImage($setting->logo) }}"
+                }
+            },
+            "image": {
+                "@type": "ImageObject",
+                "url": "{{ showImage($introduction->featured_image) }}",
+                "width": 800,
+                "height": 800
+            }
+        }
+</script>
+@endpush

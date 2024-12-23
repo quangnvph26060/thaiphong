@@ -34,6 +34,7 @@ class HomeController extends Controller
         });
 
 
+
         // $catalogues = Category::with('product')->orderBy('location')->get();
 
 
@@ -51,10 +52,10 @@ class HomeController extends Controller
             ->values()
             ->all();
 
-        $sliderVideo = Slider::where('type', 'video')->first();
+        // $sliderVideo = Slider::where('type', 'video')->first();
 
-        $services = \App\Models\SupportPolicy::latest()->get();
+        // $services = \App\Models\SupportPolicy::latest()->get();
 
-        return view('frontend.pages.home', compact('catalogues', 'news', 'items', 'sliderVideo', 'services'));
+        return view('frontend.pages.home', compact('catalogues', 'news', 'items'));
     }
 }

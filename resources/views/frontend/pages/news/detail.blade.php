@@ -6,8 +6,8 @@
 @section('og_image', showImage($news->featured_image))
 
 @section('content')
-{{-- @dd($news) --}}
-    <x-breadcrumb :title="'Tin tức'" :name="$news->subject" :route="route('news.list')"/>
+    {{-- @dd($news) --}}
+    <x-breadcrumb :title="'Tin tức'" :name="$news->subject" :route="route('news.list')" />
 
     <div class="page-content">
         <div class="container">
@@ -87,100 +87,6 @@
                     </div>
                     <hr class="divider-3" />
                     <div class="m-bottom-30"></div>
-                    {{-- <div class="wb-comment">
-                        <span class="heading">Bình luận</span>
-                        <div id="system_comments" data-commentable_type="post" data-commentable_id="224"
-                            data-censorship="1">
-                            <div class="row">
-                                <div id="data-comments">
-                                    <ul id="comments-list" class="comments-list col-md-12 comment-container"></ul>
-                                    <p
-                                        style="
-                                width: 100%;
-                                text-align: center;
-                                margin-bottom: 20px;
-                                ">
-                                        <a class="more_comment" style="display: none" href="#">Xem thêm</a>
-                                    </p>
-                                </div>
-                                <div class="comment-form comment-main col-md-12">
-                                    <form action="/submit-comment" method="POST" class="formcomment width-100">
-                                        <ul>
-                                            <li class="clearfix">
-                                                <div class="half-column">
-                                                    <input type="text" required name="name"
-                                                        class="form-control width-100" placeholder="Họ tên*"
-                                                        value="" />
-                                                </div>
-                                                <input type="hidden" name="parent_id" value="0" />
-                                                <input type="hidden" name="parent_name" value="comment-main" />
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <textarea name="content" required class="form-control width-100" placeholder="Bình luận*"></textarea>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div style="display: flow-root">
-
-                                                    <div class="text-right float-right">
-                                                        <button type="submit" class="btn-item btn btn--l btn-primary">
-                                                            Gửi
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="reply-template" style="display: none">
-                            <div class="comment-footer comment-reply">
-                                <form class="formcomment comment-form width-100">
-                                    <ul>
-                                        <li class="clearfix"></li>
-                                        <li class="clearfix">
-                                            <div class="half-column">
-                                                <input type="text" required name="name" class="form-control"
-                                                    placeholder="Họ tên*" value="" />
-                                            </div>
-                                            <div class="half-column">
-                                                <input type="email" required name="email form-email"
-                                                    class="form-control" placeholder="Email*" value="" />
-                                            </div>
-                                            <input type="hidden" name="parent_id" class="parent_id" />
-                                            <input type="hidden" name="parent_name" value="comment-reply" />
-                                        </li>
-
-                                        <li>
-                                            <div>
-                                                <textarea name="content" required class="form-control" placeholder="Bình luận*"></textarea>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="text-right">
-                                                <button type="submit" class="btn-item btn btn--l btn-primary">
-                                                    Gửi
-                                                </button>
-                                                <button type="button"
-                                                    class="btn-item btn btn--l btn-default comment_reply_close">
-                                                    Đóng
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </form>
-                            </div>
-                        </div>
-                        <script>
-                            var comment_avatar =
-                                "https://static.loveitopcdn.com/themes/base1/images/avatar/avatar.png";
-                            var comment_avatar_admin =
-                                "https://static.loveitopcdn.com/themes/base1/images/avatar/avatar.png";
-                            var trans_reply = "Trả lời";
-                        </script>
-                    </div> --}}
                 </section>
 
                 <x-sidebar />
@@ -189,3 +95,31 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "headline": "{{ $news->subject }}",
+        "description": "{{ $news->seo_description }}",
+        "url": "{{ url()->current() }}",
+        "datePublished": "{{ $news->created_at }}",
+        "dateModified": "{{ $news->updated_at }}",
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ $setting->company }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ showImage($setting->logo) }}"
+            }
+        },
+        "image": {
+            "@type": "ImageObject",
+            "url": "{{ showImage($news->featured_image) }}",
+            "width": 800,
+            "height": 800
+        }
+    }
+</script>
+@endpush

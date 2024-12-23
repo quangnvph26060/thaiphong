@@ -128,3 +128,10 @@
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+<script type="application/ld+json">
+    
+</script>
+@endpush

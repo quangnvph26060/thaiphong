@@ -120,6 +120,21 @@ Tên sản phẩm: {{ $product->name }}
     </div>
 @endsection
 
+@push('scripts')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "{{ url()->current() }}",
+            "logo": "{{ showImage($setting->logo) }}",
+            "contactPoint": [{
+                "@type": "ContactPoint",
+                "telephone": "{{ $setting->phone }}",
+                "contactType": "customer service"
+            }]
+        }
+</script>
+@endpush
 
 @push('styles')
     <style>

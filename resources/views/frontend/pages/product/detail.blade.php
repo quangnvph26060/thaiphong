@@ -72,7 +72,7 @@
                                         <input type="hidden" name="product_sale_price" value="0" />
                                     </div>
                                     <hr class="divider mt-0" />
-                                  
+
                                     <!-- Thuộc tính -->
                                     <div class="product-infor">
                                         <div class=" desc info-extra inventory">
@@ -274,8 +274,8 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/assets/plugins/elevatezoom-3.0.8/jquery.elevatezoom.min.js') }}"></script>
+    <script src="{{ url('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}" defer></script>
+    <script src="{{ url('frontend/assets/plugins/elevatezoom-3.0.8/jquery.elevatezoom.min.js') }}"></script>
 
     <script>
         $(function() {
@@ -326,7 +326,7 @@
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.css') }}" />
+    <link rel="stylesheet" href="{{ url('frontend/assets/plugins/swiper/swiper-bundle.min.css') }}"  />
     <style>
         .product-content-des ul {
             margin-top: 1rem;

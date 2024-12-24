@@ -7,11 +7,11 @@
 
 <link rel="stylesheet" href="{{ url('frontend/assets/plugins/jquery-ui/jquery-ui-custom.min.css') }}" />
 
-<link rel="stylesheet" href="{{ url('frontend/assets/themes/base/css/plugin.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/base/css/plugin.css') }}" media="print" onload="this.media='all'"/>
 
 <link rel="stylesheet" href="{{ url('frontend/assets/themes/base/css/common.css') }}" />
 
-<link rel="stylesheet" href="{{ url('frontend/assets/themes/base3/css/main.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/base3/css/main.css') }}" media="print" onload="this.media='all'"/>
 
 {{-- <link rel="stylesheet" href="{{ url('frontend/assets/themes/base3/css/widgets.css') }}" /> --}}
 

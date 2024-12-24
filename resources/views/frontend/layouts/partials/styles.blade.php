@@ -1,30 +1,30 @@
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/css/main.css') }}" />
 {{-- <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" as="font" type="font/woff2" crossorigin="anonymous"> --}}
-<link rel="stylesheet" href="{{ asset('frontend/assets/fonts/Roboto.css') }}" />
-<link rel="preload" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}" as="style"
+<link rel="stylesheet" href="{{ url('frontend/assets/fonts/Roboto.css') }}" />
+<link rel="preload" href="{{ url('frontend/assets/css/bootstrap.min.css') }}" as="style"
     onload="this.onload=null;this.rel='stylesheet'" />
-<link rel="stylesheet" href="{{ asset('frontend/assets/plugins/normalize/normalize.min.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/plugins/normalize/normalize.min.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/plugins/jquery-ui/jquery-ui-custom.min.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/plugins/jquery-ui/jquery-ui-custom.min.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/base/css/plugin.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/base/css/plugin.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/base/css/common.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/base/css/common.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/base3/css/main.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/base3/css/main.css') }}" />
 
-{{-- <link rel="stylesheet" href="{{ asset('frontend/assets/themes/base3/css/widgets.css') }}" /> --}}
+{{-- <link rel="stylesheet" href="{{ url('frontend/assets/themes/base3/css/widgets.css') }}" /> --}}
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/lovepet/css/style.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/lovepet/css/style.css') }}" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" media="print"
     onload="this.media='all'" />
 
-{{-- <link rel="stylesheet" href="{{ asset('frontend/assets/themes/base/css/loading.css') }}" /> --}}
+{{-- <link rel="stylesheet" href="{{ url('frontend/assets/themes/base/css/loading.css') }}" /> --}}
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/css/custom.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/base3/css/header_left.css') }}" />
+<link rel="stylesheet" href="{{ url('frontend/assets/themes/base3/css/header_left.css') }}" />
 
 <style>
     /* Mặc định không có vị trí fixed */

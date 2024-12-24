@@ -125,6 +125,14 @@ function getSize($path)
     return '0 MB'; // Return 0MB if file doesn't exist
 }
 
+function getImageDimensions($path){
+    if ($path && Storage::exists($path)) {
+        return getimagesize(showImage($path));
+    }
+
+    return null;
+}
+
 
 function deleteImage($path)
 {

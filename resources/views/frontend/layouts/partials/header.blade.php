@@ -9,8 +9,7 @@
             <div class=" col-lg-6 ">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="time_header mr-5">
-                        <img src="{{ asset('frontend/assets/image/time.jpg') }}"
-                            alt="time_header">
+                        <img src="{{ asset('frontend/assets/image/time.jpg') }}" alt="time_header">
                         <span>{{ $setting->working_time }}</span>
                     </div>
                     <div class="social-header d-inline-block relative">
@@ -150,8 +149,7 @@
                             style="font-size: 1.2rem">
                             <div class="phone_image mr-2">
                                 <img width="20px" height="auto"
-                                    src="{{ asset('frontend/assets/image/phone_header.jpg') }}"
-                                    alt="Giỏ hàng">
+                                    src="{{ asset('frontend/assets/image/phone_header.jpg') }}" alt="Giỏ hàng">
                             </div>
                             <div class="phone_content" style="line-height: 20px">
                                 <span class="d-block" style="font-size: 13px">Liên hệ ngay</span>
@@ -258,9 +256,14 @@
             <div class="container">
                 <div class="row clearfix align-items-center">
                     <div class="col-3 header-logo">
-                        <a href="{{ url('/') }}" aria-label="Máy Siêu Âm SonoScape" class="logo d-inline-b">
-                            <img src="{{ showImage($setting->logo) }}" alt="Máy siêu âm SonoScape Việt Nam"
-                                width="100%" height="100%" />
+                        <a href="{{ url('/') }}" aria-label="{{ $setting->company }}" class="logo d-inline-b">
+
+                            <picture>
+                                <source srcset="{{ showImage($setting->logo) }}" type="image/webp">
+                                <img src="{{ showImage($setting->logo) }}" alt="{{ $setting->company }}"
+                                    style="width: {{ getImageDimensions($setting->logo)[0] }}px !important;
+            height: {{ getImageDimensions($setting->logo)[1] }}px !important;" />
+                            </picture>
                         </a>
                     </div>
                     <div class="col-7 form-search">
@@ -279,8 +282,8 @@
                         <div class="phone_header d-flex align-items-center justify-content-end"
                             style="font-size: 1.2rem">
                             <div class="phone_image mr-3">
-                                <img src="//bizweb.dktcdn.net/100/411/753/themes/894845/assets/phone_header.png?1676273080247"
-                                    alt="Giỏ hàng">
+                                <img style="width: 20px; height: 20px;"
+                                    src="{{ asset('frontend/assets/image/phone_header.jpg') }}" alt="Giỏ hàng">
                             </div>
                             <div class="phone_content" style="line-height: 20px">
                                 <span class="d-block" style="font-size: 15px">Liên hệ ngay</span>

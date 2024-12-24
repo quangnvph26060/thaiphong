@@ -13,6 +13,7 @@ function _typeof(t) {
               : typeof t;
           })(t);
   }
+  
   !(function (t) {
     function e(t, e) {
       if (!(t.originalEvent.touches.length > 1)) {

@@ -12,7 +12,8 @@
                                 srcset="{{ showImage($item['slider'], '480w') }} 480w,
                                     {{ showImage($item['slider'], '1024w') }} 1024w,
                                     {{ showImage($item['slider'], '1920w') }} 1920w"
-                                sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1920px" alt="{{ $item['alt'] ?? showImage($item['slider']) }}" loading="lazy" />
+                                sizes="(max-width: 600px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                                alt="{{ $item['alt'] ?? showImage($item['slider']) }}" loading="lazy" />
 
                         </div>
                     @endforeach
@@ -248,6 +249,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const bannerSlides = document.querySelectorAll('.swiper-container.banner .swiper-slide');
             const swiperBanner = new Swiper('.swiper-container.banner', {
+                lazy: true,
                 slidesPerView: 1,
                 slidesPerGroup: 1,
                 loop: bannerSlides.length > 1 ? true : false,

@@ -1,31 +1,15 @@
 <div class="header-top " style="background-color: #cccccc">
     <div class="container">
         <div class=" row align-items-center ">
-
-
             <div class="col-lg-6">
                 <div class="section-infor-topbar relative " style="padding-top: 5px;">
-                    {{-- <ul class="info-account line-right">
-                    <li>
-                        <span class="phone-label">Gọi ngay</span>
-                        <a href="tel:{{ $setting->phone }}">
-                            <span class="color">
-                                <i class="fas fa-phone-alt" aria-hidden="true"></i>
-                            </span>
-                            {{ $setting->phone }}
-                        </a>
-                    </li>
-                </ul> --}}
                     {{ $setting->header_top }}
-                    {{-- <marquee behavior="scroll">
-
-                </marquee> --}}
                 </div>
             </div>
             <div class=" col-lg-6 ">
                 <div class="d-flex align-items-center justify-content-center">
                     <div class="time_header mr-5">
-                        <img src="//bizweb.dktcdn.net/100/411/753/themes/894845/assets/time.png?1676273080247"
+                        <img src="{{ asset('frontend/assets/image/time.jpg') }}"
                             alt="time_header">
                         <span>{{ $setting->working_time }}</span>
                     </div>
@@ -166,7 +150,7 @@
                             style="font-size: 1.2rem">
                             <div class="phone_image mr-2">
                                 <img width="20px" height="auto"
-                                    src="//bizweb.dktcdn.net/100/411/753/themes/894845/assets/phone_header.png?1676273080247"
+                                    src="{{ asset('frontend/assets/image/phone_header.jpg') }}"
                                     alt="Giỏ hàng">
                             </div>
                             <div class="phone_content" style="line-height: 20px">
@@ -351,7 +335,9 @@
                                             <!-- Danh mục hiển thị khi hover -->
                                             <ul class="dropdown-menu sub-menu">
                                                 @foreach ($categoryProduct as $item)
-                                                    <li><a href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}</a></li>
+                                                    <li><a
+                                                            href="{{ route('product.detail', $item->slug) }}">{{ $item->name }}</a>
+                                                    </li>
                                                 @endforeach
                                             </ul>
                                         </li>

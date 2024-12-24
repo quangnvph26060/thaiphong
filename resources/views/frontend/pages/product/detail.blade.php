@@ -38,22 +38,26 @@
                             </div>
 
                             <div class="relative qv-carousel-wrap">
-                                <div id="product-detail-carousel" class="owl-carousel d-carousel product-detail-carousel"
-                                    data-nav="true" data-margin="15" data-responsive-0="4" data-responsive-576="4"
-                                    data-responsive-768="4" data-responsive-992="4" onclick="changeImageOnClick(event)">
-
-                                    @foreach ($allImages as $item)
-                                        <div>
-                                            <a class="d-block text-center"
-                                                style="
-                                                background-image: url({{ showImage($item) }});
-                                            ">
-                                                <img class="owl-lazy" data-number="{{ $loop->index }}"
-                                                    src="{{ showImage($item) }}" data-src="{{ showImage($item) }}" alt />
-                                            </a>
-                                        </div>
-                                    @endforeach
+                                <div id="product-detail-swiper" class="swiper-container product-detail-swiper">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($allImages as $item)
+                                            <div class="swiper-slide">
+                                                <a class="d-block text-center"
+                                                    style="
+                                                   background-image: url({{ showImage($item) }});
+                                                   ">
+                                                    <img class="swiper-lazy" data-number="{{ $loop->index }}"
+                                                        src="{{ showImage($item) }}" data-src="{{ showImage($item) }}"
+                                                        alt />
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <!-- Navigation Buttons -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-7 col-sm-12 col-xs-12 detail-product">
@@ -164,8 +168,8 @@
                                     <ul class="clearfix horizontal-list social-icons">
                                         <li class="relative">
 
-                                            <div class="fb-share-button" data-href="{{ url()->current() }}"
-                                                data-layout="" data-size=""><a target="_blank"
+                                            <div class="fb-share-button" data-href="{{ url()->current() }}" data-layout=""
+                                                data-size=""><a target="_blank"
                                                     href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}&amp;src=sdkpreparse"
                                                     class="fb-xfbml-parse-ignore">Chia sẻ</a>
                                             </div>
@@ -220,7 +224,7 @@
                         <article class="blog-item product-grid-view" data-wow-delay="0.25s">
                             <div class="row">
 
-                                <div class="swiper-container">
+                                <div class="swiper-container related">
                                     <div class="swiper-wrapper">
                                         @foreach ($relatedProducts as $item)
                                             <div class="swiper-slide">
@@ -296,8 +300,37 @@
             });
         });
 
+
+
         document.addEventListener('DOMContentLoaded', function() {
-            const swiper = new Swiper('.swiper-container', {
+
+            const swiperGallery = new Swiper('#product-detail-swiper', {
+                lazy: true, // Tải ảnh lười biếng
+                spaceBetween: 15, // Khoảng cách giữa các slide
+                slidesPerView: 4, // Hiển thị 4 slide cùng lúc
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+
+            });
+
+            // Hàm thay đổi ảnh chính khi nhấp vào slider
+            document.querySelectorAll('#product-detail-swiper .swiper-slide').forEach((slide, index) => {
+                slide.addEventListener('click', () => {
+                    const mainImage = document.querySelector('.img-main-detail');
+                    const mainHref = document.querySelector('.img-main-href');
+                    const newSrc = slide.querySelector('img').getAttribute(
+                    'data-src'); // Lấy ảnh từ slider
+                    mainImage.src = newSrc;
+                    mainHref.href = newSrc;
+                });
+            });
+
+
+            // console.log(document.querySelectorAll('.swiper-container.related .swiper-slide').length);
+
+            const swiper = new Swiper('.swiper-container.related', {
                 slidesPerView: 2,
                 spaceBetween: 10,
                 loop: true,
@@ -320,13 +353,13 @@
         });
     </script>
 
-<script type="application/ld+json">
+    <script type="application/ld+json">
 
 </script>
 @endpush
 
 @push('styles')
-    <link rel="stylesheet" href="{{ url('frontend/assets/plugins/swiper/swiper-bundle.min.css') }}"  />
+    <link rel="stylesheet" href="{{ url('frontend/assets/plugins/swiper/swiper-bundle.min.css') }}" />
     <style>
         .product-content-des ul {
             margin-top: 1rem;

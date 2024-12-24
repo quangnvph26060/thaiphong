@@ -10,7 +10,7 @@
 
 <script src="{{ url('frontend/assets/themes/base/js/plugin.js') }}"></script>
 
-{{-- <script src="{{ url('frontend/assets/themes/base/js/common.js') }}"></script> --}}
+<script src="{{ url('frontend/assets/themes/base/js/common.js') }}"></script>
 
 <script src="{{ url('frontend/assets/themes/base3/js/header.js') }}"></script>
 

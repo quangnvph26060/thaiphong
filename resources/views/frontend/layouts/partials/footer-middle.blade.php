@@ -8,7 +8,8 @@
                             <h3 style="font-weight: 600">LIÊN HỆ VỚI CHÚNG TÔI</h3>
                             <p>
                                 <img src="{{ showImage($setting->logo) }}" alt="{{ $setting->company }}"
-                                    data-isrc="{{ showImage($setting->logo) }}" style="height: 80px; width: auto" />
+                                    data-isrc="{{ showImage($setting->logo) }}" style="height: 80px; width: 204px"
+                                     />
                             </p>
 
                             {{-- <p style="text-align: center">&nbsp;</p> --}}

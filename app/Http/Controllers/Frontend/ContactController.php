@@ -47,6 +47,7 @@ class ContactController extends Controller
                 'message' => $validator->errors()->first()
             ]);
         }
+
         $credentials = $validator->validated();
 
         $recentContact = Form::where([

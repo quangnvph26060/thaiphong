@@ -12,7 +12,7 @@
                                 srcset="{{ showImage($item['slider'], '480w') }} 480w,
                                     {{ showImage($item['slider'], '1024w') }} 1024w,
                                     {{ showImage($item['slider'], '1920w') }} 1920w"
-                                sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1920px" alt="{{ $item['alt'] }}">
+                                sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1920px" alt="{{ $item['alt'] ?? showImage($item['slider']) }}" loading="lazy" />
 
                         </div>
                     @endforeach

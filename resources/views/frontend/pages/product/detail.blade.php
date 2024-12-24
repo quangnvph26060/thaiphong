@@ -72,34 +72,11 @@
                                         <input type="hidden" name="product_sale_price" value="0" />
                                     </div>
                                     <hr class="divider mt-0" />
-                                    {{-- @if ($product->sub_description) --}}
-                                    {{-- <div class="product-content-des"> --}}
-                                    {{-- {!! $product->sub_description !!} --}}
-                                    {{-- <p class="mb-1 mt-3">
-                                            Nguồn gốc: {{ $product->source }}
-                                        </p>
-                                        <p class="mb-1">
-                                            Danh mục:
-                                            {{ !is_null($product->category) ? $product->category->name : 'đang cập nhật...' }}
-                                        </p>
-                                        <p class="mb-1">
-                                            Tình trạng : {{ $product->condition_level }}
-
-                                        </p>
-
-                                        --}}
-                                    {{-- </div>
-                                        <hr class="divider" />
-                                    @endif --}}
-
-
-
-
-
+                                  
                                     <!-- Thuộc tính -->
                                     <div class="product-infor">
                                         <div class=" desc info-extra inventory">
-                                            @if ($product->price || $product->sale_price)
+                                            @if ($product->price > 0 || $product->sale_price > 0)
                                                 <p class="mb-1 d-flex">
                                                     @if ($product->sale_price)
                                                         <span>Giá chỉ từ:</span>

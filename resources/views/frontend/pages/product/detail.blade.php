@@ -182,7 +182,6 @@
                             <div class="hotline-box">
                                 <p class="meta-title">
                                     {{ $setting->introduct_title }}
-
                                 </p>
                                 <div class="hotline-content">
                                     <div>
@@ -423,6 +422,7 @@
         }
 
         .meta-title {
+            text-align: center;
             font-weight: bold;
             font-size: .8rem;
             margin-bottom: 10px;

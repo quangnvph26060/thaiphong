@@ -7,8 +7,8 @@
                         <div class="ck_editor_content widget-content">
                             <h3 style="font-weight: 600">LIÊN HỆ VỚI CHÚNG TÔI</h3>
                             <p>
-                                <img src="{{ showImage($setting->logo) }}" data-isrc="{{ showImage($setting->logo) }}"
-                                    style="height: 80px; width: auto" />
+                                <img src="{{ showImage($setting->logo) }}" alt="{{ $setting->company }}"
+                                    data-isrc="{{ showImage($setting->logo) }}" style="height: 80px; width: auto" />
                             </p>
 
                             {{-- <p style="text-align: center">&nbsp;</p> --}}
@@ -19,23 +19,6 @@
                                     style="font-size: 20px"></span>
                             </h3>
 
-
-
-                            <p>
-                                {{-- <img alt="" loading="lazy" sizes="(max-width: 300px) 100vw, 300px"
-                                    src="https://giaycaosmartmen.com/wp-content/uploads/2022/06/phone-1.svg"
-                                    style="height: 20px; width: 20px" />&nbsp; &nbsp; &nbsp; &nbsp;<span
-                                    style="font-size: 16px"><span style="color: #000000">Gọi mua
-                                        hàng&nbsp;</span></span> --}}
-                            </p>
-
-                            {{-- <p>
-                                <i aria-hidden="true" class="fa fa-phone">&nbsp;&nbsp;</i>
-                                <strong>
-                                    <span style="color: #000000">{{ $setting->name }} : </span>
-                                    <span style="color: #cc0000">{{ $setting->phone }}</span>
-                                </strong>
-                            </p> --}}
 
                             <p style="font-size: 14px;"><span style="color: #000000"><i style="margin-right: 5px"
                                         aria-hidden="true" class="fa fa-briefcase">&nbsp;&nbsp;</i><strong>Kinh
@@ -48,15 +31,13 @@
                             </p>
 
                             <p style="font-size: 14px; display:flex;">
-                                {{-- <span style="color: #000000" style="display: flex;"> --}}
-                                    <i style="margin-right: 8px; margin-top:5px" aria-hidden="true"
-                                        class="fa fa-map-marker">&nbsp;&nbsp;</i>
-                                    <span>
-                                        <strong>Địa chỉ:</strong>
-                                        Số 256/33, Đường Dương Quảng Hàm, Quận Gò Vấp,
-                                        Phường 5, TP Hồ Chí Minh
-                                    </span>
-                                {{-- </span> --}}
+                                <i style="margin-right: 8px; margin-top:5px" aria-hidden="true"
+                                    class="fa fa-map-marker">&nbsp;&nbsp;</i>
+                                <span>
+                                    <strong>Địa chỉ:</strong>
+                                    Số 256/33, Đường Dương Quảng Hàm, Quận Gò Vấp,
+                                    Phường 5, TP Hồ Chí Minh
+                                </span>
                             </p>
 
                             <p>
@@ -68,8 +49,6 @@
                                 </span>
                             </p>
 
-                            {{-- <span style="color: #cc0000">{{ $setting->sort_description }}</span> --}}
-
                         </div>
                     </div>
                 </div>
@@ -80,40 +59,6 @@
             <div class="widget widget-text_editor widget-16" data-widget-id="16" data-widget="text_editor">
                 <div class="block-wrapper">
                     <div class="">
-                        {{-- <div class="ck_editor_content widget-content">
-                            <p style="text-align: center">
-                                <img alt="{{ $setting->company }}" src="{{ showImage($setting->company_logo) }}"
-                                    data-isrc="{{ showImage($setting->company_logo) }}"
-                                    style="height: auto; width: 150px; float: left" title="{{ $setting->company }}" />
-                            </p>
-
-                            <h3>&nbsp;</h3>
-
-                            <h3>&nbsp;</h3>
-
-                            <h3>&nbsp;</h3>
-
-                            <h3>&nbsp;</h3>
-
-                            <h3>&nbsp;</h3>
-
-                            <h3>
-                                <span style="font-size: 16px"><span
-                                        style="color: #000000">{{ $setting->company }}</span></span><span
-                                    style="font-size: 20px"></span><br />
-                                <span style="font-size: 14px"><span style="color: #000000"><i aria-hidden="true"
-                                            class="fa fa-map-marker">&nbsp;&nbsp;</i>{{ $setting->address }}</span></span>
-                            </h3>
-
-                            <p>
-                                <span style="font-size: 14px"><span style="color: #000000">► Gmail:
-                                        {{ $setting->email }}</span></span>
-                            </p>
-
-                            <p>
-                                -----------------------------------------------------------
-                            </p>
-                        </div> --}}
 
                         <h3 style="font-weight: 600">DANH MỤC</h3>
 
@@ -192,3 +137,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy tất cả các iframe trong phần tử có class .widget-content
+        var iframes = document.querySelector('.widget-content iframe');
+        iframes.setAttribute('title', 'MAP');
+    });
+</script>

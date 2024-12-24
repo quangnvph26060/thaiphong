@@ -227,7 +227,8 @@
                         </div>
 
                         <div id="input-container">
-                            @foreach ($data->introduction['phone'] ?? [] as $key => $phone)
+
+                            @forelse ($data->introduction['phone'] ?? [] as $key => $phone)
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group mb-3">
@@ -252,9 +253,27 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-
-
+                            @empty
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <input type="text" name="introduction[phone][]" class="form-control"
+                                                value="" placeholder="Số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group mb-3">
+                                            <input type="text" name="introduction[facility][]" class="form-control"
+                                                value="" placeholder="Cơ sở">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <div class="form-group mb-3">
+                                            <button type="button" class="btn btn-sm btn-success add-row">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>

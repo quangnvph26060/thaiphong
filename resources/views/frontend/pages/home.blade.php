@@ -8,7 +8,12 @@
                 <div class="swiper-wrapper">
                     @foreach ($items as $key => $item)
                         <div class="swiper-slide">
-                            <img src="{{ showImage($item['slider']) }}" alt="Banner 1">
+                            <img src="{{ showImage($item['slider']) }}"
+                                srcset="{{ showImage($item['slider'], '480w') }} 480w,
+                                    {{ showImage($item['slider'], '1024w') }} 1024w,
+                                    {{ showImage($item['slider'], '1920w') }} 1920w"
+                                sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1920px" alt="{{ $item['alt'] }}">
+
                         </div>
                     @endforeach
                 </div>

@@ -8,13 +8,13 @@
 
 <script src="{{ asset('frontend/assets/plugins/jquery-ui/jquery-ui-custom.min.js') }}"></script>
 
-<script src="{{ asset('frontend/assets/themes/base/js/plugin.js') }}"></script>
+{{-- <script src="{{ asset('frontend/assets/themes/base/js/plugin.js') }}"></script> --}}
 
 <script src="{{ asset('frontend/assets/themes/base/js/common.js') }}"></script>
 
 <script src="{{ asset('frontend/assets/themes/base3/js/header.js') }}"></script>
 
-<script src="{{ asset('frontend/assets/themes/base3/js/main.js') }}"></script>
+{{-- <script src="{{ asset('frontend/assets/themes/base3/js/main.js') }}"></script> --}}
 
 <script src="{{ asset('frontend/assets/themes/lovepet/js/main.js') }}"></script>
 

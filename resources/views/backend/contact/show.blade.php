@@ -150,7 +150,7 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Mô tả ngắn</label>
                                     <textarea name="sort_description" class="form-control @error('sort_description') is-invalid @enderror">{{ $data->sort_description }}</textarea>
@@ -158,7 +158,7 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Map</label>
@@ -212,6 +212,49 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <label for="">Tiêu đề</label>
+                                <input type="text" name="introduct_title" class="form-control"
+                                    value="{{ $data->introduct_title }}">
+                            </div>
+                        </div>
+
+                        <div id="input-container">
+                            @foreach ($data->introduction['phone'] ?? [] as $key => $phone)
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-3">
+                                            <input type="text" name="introduction[phone][]" class="form-control"
+                                                value="{{ $phone }}" placeholder="Số điện thoại">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="form-group mb-3">
+                                            <input type="text" name="introduction[facility][]" class="form-control"
+                                                value="{{ $data->introduction['facility'][$key] ?? '' }}"
+                                                placeholder="Cơ sở">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <div class="form-group mb-3">
+                                            @if ($key > 0)
+                                                <button type="button" class="btn btn-sm btn-danger remove-row">-</button>
+                                            @else
+                                                <button type="button" class="btn btn-sm btn-success add-row">+</button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
                         </div>
                     </div>
                 </div>
@@ -284,14 +327,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tagify/4.7.0/tagify.min.js"></script>
 
     <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     var input = document.querySelector('#seo_keywords');
-        //     new Tagify(input, {
-        //         maxTags: 10, // Limit the number of tags
-        //         enforceWhitelist: true // Allow any tags
-        //     });
+        $('.add-row').click(function() {
+            var newRow = `
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <input type="text" name="introduction[phone][]" class="form-control" value="" placeholder="Số điện thoại">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="form-group mb-3">
+                        <input type="text" name="introduction[facility][]" class="form-control" value="" placeholder="Cơ sở">
+                    </div>
+                </div>
+                <div class="col-lg-1">
+                    <div class="form-group mb-3">
+                        <button type="button" class="btn btn-sm btn-danger remove-row">-</button>
+                    </div>
+                </div>
+            </div>
+        `;
+            $('#input-container').append(newRow);
+        });
 
-        // });
+        // Xử lý nút "-" để xóa dòng input
+        $(document).on('click', '.remove-row', function() {
+            $(this).closest('.row').remove();
+        });
 
         const input = document.querySelector('#seo_keywords');
         const tagify = new Tagify(input, {

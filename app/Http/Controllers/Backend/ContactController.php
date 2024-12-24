@@ -19,6 +19,7 @@ class ContactController extends Controller
     }
     public function update(Request $request)
     {
+        // dd($request->all());
         // , 'regex:/^0[0-9]{9}$/'
         $request->validate(
             [
@@ -40,6 +41,8 @@ class ContactController extends Controller
                 'copyright' => 'nullable',
                 'working_time' => 'nullable',
                 'header_top' => 'nullable',
+                'introduct_title' => 'nullable',
+                'introduction' => 'nullable',
             ],
             __('request.messages'),
             [

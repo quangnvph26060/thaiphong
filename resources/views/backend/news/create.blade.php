@@ -131,6 +131,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <select name="category_id" class="form-select">
+                                <option value="" selected>Chọn danh mục</option>
                                 @foreach ($categories as $id => $name)
                                     <option value="{{ $id }}" @selected(old('category_id'))>{{ $name }}
                                     </option>

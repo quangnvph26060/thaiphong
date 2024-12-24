@@ -297,7 +297,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}" defer></script>
     <script src="{{ asset('frontend/assets/plugins/elevatezoom-3.0.8/jquery.elevatezoom.min.js') }}"></script>
 
     <script>

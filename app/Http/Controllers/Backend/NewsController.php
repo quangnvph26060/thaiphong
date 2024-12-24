@@ -73,7 +73,7 @@ class NewsController extends Controller
             'status' => 'nullable|in:published,unpublished',
             'seo_keywords' => 'nullable',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'posted_at' => 'nullable|date_format:Y-m-d\TH:i|after:today',
+            'posted_at' => 'nullable|after:today',
             'seo_title' => 'nullable',
             'tags' => 'nullable',
             'category_id' => 'nullable'
@@ -136,7 +136,7 @@ class NewsController extends Controller
             'status' => 'nullable|in:published,unpublished',
             'seo_keywords' => 'nullable',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'posted_at' => 'nullable|date_format:Y-m-d\TH:i',
+            'posted_at' => 'nullable',
             'seo_title' => 'nullable',
             'tags' => 'nullable',
             'category_id' => 'nullable|integer|exists:sgo_categories,id',

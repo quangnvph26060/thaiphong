@@ -12,13 +12,13 @@
 
 <link rel="stylesheet" href="{{ asset('frontend/assets/themes/base3/css/main.css') }}" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/base3/css/widgets.css') }}" />
+{{-- <link rel="stylesheet" href="{{ asset('frontend/assets/themes/base3/css/widgets.css') }}" /> --}}
 
 <link rel="stylesheet" href="{{ asset('frontend/assets/themes/lovepet/css/style.css') }}" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" media="print" onload="this.media='all'" />
 
-<link rel="stylesheet" href="{{ asset('frontend/assets/themes/base/css/loading.css') }}" />
+{{-- <link rel="stylesheet" href="{{ asset('frontend/assets/themes/base/css/loading.css') }}" /> --}}
 
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/custom.css') }}" />
 

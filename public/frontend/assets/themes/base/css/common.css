@@ -48,8 +48,8 @@ img {
 .owl-carousel.w-slider-carousel img[src=""],
 .owl-carousel.w-slider-carousel:not(.owl-loaded) {
   height: 200px;
-  background: url(../../../image/giphy.gif)
-    no-repeat 50%;
+  /* background: url(../../../image/giphy.gif)
+    no-repeat 50%; */
   display: block;
   overflow: hidden;
 }

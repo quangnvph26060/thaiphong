@@ -4,33 +4,18 @@
 @section('content')
     <div class="page-content" style="padding: 0 0 30px 0 !important;">
         <div class="row">
-            <div class="widget widget-slider widget-26 col-12 col-md-12" data-widget-id="26" data-widget="slider">
-                <div class="hero-wrap widget-slider widget-26 not-padding-bottom not-padding-top style-1" data-id="124">
-                    <div class="">
-                        <div class="owl-carousel w-slider-carousel widget-content" data-total-item="3" data-responsive-0="1"
-                            data-responsive-576="1" data-responsive-768="1" data-responsive-992="1" data-autoheight="true"
-                            data-width="1920" data-height="800" data-animatein="fadeInDown" data-animateout="fadeOut"
-                            data-autoplaytimeout="4000" data-dots="true" data-nav="true" data-loop="true"
-                            data-autoplay="true">
-
-
-                            @foreach ($items as $key => $item)
-                                <div class="item-slider text-center relative">
-                                    <a href="{{ $item['link'] ?? 'javascript:void(0)' }}"
-                                        @if (!is_null($item['link'])) target="_blank" @endif>
-                                        <picture class="banner-thumb">
-                                            <source media="(min-width: 650px)" srcset="{{ showImage($item['slider']) }}" />
-                                            <source media="(min-width: 350px)" srcset="{{ showImage($item['slider']) }}" />
-                                            <img loading="lazy" src="{{ showImage($item['slider']) }}" width="100%" height="800"
-                                                alt="{{ $item['alt'] }}" />
-                                        </picture>
-                                    </a>
-                                </div>
-                            @endforeach
+            <div class="swiper-container banner">
+                <div class="swiper-wrapper">
+                    @foreach ($items as $key => $item)
+                        <div class="swiper-slide">
+                            <img src="{{ showImage($item['slider']) }}" alt="Banner 1">
                         </div>
-                    </div>
+                    @endforeach
                 </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
             </div>
+
         </div>
         @foreach ($catalogues as $catalog)
             <div class="row">
@@ -59,13 +44,17 @@
                                                     <div class="col-6 col-sm-4 col-md-4 col-lg-3">
                                                         <div class="product-item relative">
                                                             <figure class="photoframe relative">
-                                                                <div class="relative img-product">
+                                                                <div class="relative img-product"
+                                                                    style="width: 100%; aspect-ratio: 4/3">
                                                                     <a href="{{ route('product.detail', $product->slug) }}"
                                                                         class="d-block relative">
                                                                         <img src="{{ showImage($product->main_image) }}"
-                                                                            width="100%" height="100%"
-                                                                            data-isrc="{{ showImage($product->main_image) }}"
-                                                                            class="lazyload" alt="{{ $product->name }}"
+                                                                            srcset="{{ showImage($product->main_image) }} 480w,
+                                                                                {{ showImage($product->main_image) }} 1024w,
+                                                                                {{ showImage($product->main_image) }} 1920w"
+                                                                            sizes="(max-width: 600px) 480px, (max-width: 1200px) 1024px, 1920px"
+                                                                            width="800" height="600" class="lazyload"
+                                                                            alt="{{ $product->name }}"
                                                                             aria-label="{{ $product->name }}" />
                                                                     </a>
                                                                 </div>
@@ -121,8 +110,8 @@
                                         <div class="line-hg"><span></span></div>
                                         <div class="svg-wrap">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                width="125.656px" height="125.655px" viewBox="0 0 125.656 125.655"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="125.656px"
+                                                height="125.655px" viewBox="0 0 125.656 125.655"
                                                 style="enable-background: new 0 0 125.656 125.655" xml:space="preserve">
                                                 <g>
                                                     <path
@@ -133,7 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-container" style="margin-top: 70px; overflow-x: hidden">
+                                <div class="swiper-container slider" style="margin-top: 70px; overflow-x: hidden">
                                     <div class="swiper-wrapper">
                                         @foreach ($news as $item)
                                             <div class="swiper-slide">
@@ -248,47 +237,38 @@
 @push('scripts')
     <script type="application/ld+json">
     </script>
+
     <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
 
     <script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            breakpoints: {
-                768: {
-                    slidesPerView: 3,
+        document.addEventListener('DOMContentLoaded', () => {
+            const swiper = new Swiper('.swiper-container.banner', {
+                loop: true, // Vòng lặp
+                autoplay: {
+                    delay: 3000, // Tự động chuyển sau 3 giây
+                    disableOnInteraction: false, // Không tắt autoplay khi tương tác
                 },
-
-                480: {
-                    slidesPerView: 2,
-                }
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const youtubeSlider = new Swiper(".youtube-slider", {
-                loop: true, // Vòng lặp slider
-                spaceBetween: 20, // Khoảng cách giữa các slide
                 pagination: {
-                    el: ".swiper-pagination", // Chỉ định phần tử pagination
+                    el: '.swiper-pagination',
                     clickable: true,
                 },
-                navigation: {
-                    nextEl: ".swiper-button-next", // Nút 'Next'
-                    prevEl: ".swiper-button-prev", // Nút 'Prev'
+            });
+
+            var swiper = new Swiper('.swiper-container.slider', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                breakpoints: {
+                    768: {
+                        slidesPerView: 3,
+                    },
+
+                    480: {
+                        slidesPerView: 2,
+                    }
                 },
-                autoplay: {
-                    delay: 5000, // Tự động chuyển slide sau 5 giây
-                    disableOnInteraction: false,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
                 },
             });
         });
@@ -299,6 +279,17 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.css') }}" />
     <style>
+        .swiper-container {
+            width: 100%;
+            height: 500px;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .consult-section {
             padding: 50px 0;
         }
@@ -311,8 +302,6 @@
         }
 
         .consult-left {
-            /* background-image: url('{{ asset('frontend/assets/image/background.jpg') }}'); */
-            /* Thay bằng hình ảnh của bạn */
             background-size: cover;
             background-position: center;
         }
@@ -334,57 +323,11 @@
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
-        /* Nút Next và Prev */
-        .swiper-button-next,
-        .swiper-button-prev {
-            width: 40px;
-            height: 40px;
-            background-color: #007bff;
-            /* Màu nền */
-            border-radius: 50%;
-            /* Làm nút tròn */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            /* Màu biểu tượng */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Tạo bóng */
-            transition: all 0.3s ease;
-            /* Hiệu ứng mượt */
-        }
-
         @media (max-width: 768px) {
-            .swiper.youtube-slider.swiper-initialized.swiper-horizontal.swiper-ios {
-                height: 225px;
+            .swiper-container.banner {
+                height: 150px;
+                /* Chiều cao nhỏ hơn trên mobile */
             }
-        }
-
-        /* Hover */
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-            background-color: #0056b3;
-            /* Màu nền khi hover */
-            transform: scale(1.1);
-            /* Tăng kích thước một chút */
-        }
-
-        /* Biểu tượng mặc định */
-        .swiper-button-next::after,
-        .swiper-button-prev::after {
-            font-size: 16px;
-            /* Kích thước biểu tượng */
-        }
-
-        /* Định vị trí nút */
-        .swiper-button-next {
-            right: 0px;
-            /* Cách mép phải */
-        }
-
-        .swiper-button-prev {
-            left: 0px;
-            /* Cách mép trái */
         }
     </style>
 @endpush

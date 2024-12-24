@@ -28,10 +28,12 @@ class Contact extends Model
         'seo_keywords',
         'copyright',
         'working_time',
-        'header_top'
+        'header_top',
+        'introduct_title',
+        'introduction',
     ];
 
-    // protected $casts = [
-    //     'seo_keywords' => 'array'
-    // ];
+    protected $casts = [
+        'introduction' => 'array',
+    ];
 }

@@ -178,6 +178,30 @@
                                     </ul>
                                 </div>
                             </div>
+
+                            <div class="hotline-box">
+                                <p class="meta-title">
+                                    {{ $setting->introduct_title }}
+
+                                </p>
+                                <div class="hotline-content">
+                                    <div>
+                                        <i class="fa fa-phone-square"></i> Hotline:
+                                    </div>
+                                    <div>
+                                        @foreach ($setting->introduction['phone'] as $key => $item)
+                                            <p>
+                                                <span class="hotline-number">{{ $item }}</span>
+                                                <span
+                                                    class="hotline-region">{{ $setting->introduction['facility'][$key] ?? '' }}</span>
+                                            </p>
+                                        @endforeach
+
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="detail-tabs">
@@ -321,7 +345,7 @@
                     const mainImage = document.querySelector('.img-main-detail');
                     const mainHref = document.querySelector('.img-main-href');
                     const newSrc = slide.querySelector('img').getAttribute(
-                    'data-src'); // Lấy ảnh từ slider
+                        'data-src'); // Lấy ảnh từ slider
                     mainImage.src = newSrc;
                     mainHref.href = newSrc;
                 });
@@ -388,6 +412,60 @@
             font-style: italic;
             color: #555;
             background: rgba(128, 128, 128, .5)
+        }
+
+        .hotline-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin-top: 20px;
+        }
+
+        .meta-title {
+            font-weight: bold;
+            font-size: .8rem;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .hotline-content {
+            display: flex;
+            gap: 10px;
+            justify-content: center
+        }
+
+        .hotline-content p {
+            margin: 0;
+            font-size: .8rem;
+            color: #333;
+        }
+
+        .hotline-number {
+            color: red;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .hotline-region {
+            color: #333;
+        }
+
+        .details-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .details-link i {
+            margin-left: 5px;
+        }
+
+        .details-link:hover {
+            text-decoration: underline;
         }
     </style>
 @endpush

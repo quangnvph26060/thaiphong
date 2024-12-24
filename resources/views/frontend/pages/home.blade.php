@@ -188,7 +188,7 @@
         <div class="consult-section">
             <div class="container">
                 <div class="row consult-container"
-                    style="background-image: url({{ asset('frontend/assets/image/pngtree-medical-doctor-science-background-picture-image_968711.jpg') }})">
+                    style="background-image: url({{ asset('frontend/assets/image/pngtree-medical-doctor-science-background-picture-image_968711.webp') }})">
                     <!-- Hình ảnh bên trái -->
                     <div class="col-lg-4 consult-left"></div>
 

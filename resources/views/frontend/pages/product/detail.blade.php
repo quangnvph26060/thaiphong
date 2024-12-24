@@ -189,7 +189,7 @@
                                         <i class="fa fa-phone-square"></i> Hotline:
                                     </div>
                                     <div>
-                                        @foreach ($setting->introduction['phone'] as $key => $item)
+                                        @foreach ($setting->introduction['phone'] ?? [] as $key => $item)
                                             <p>
                                                 <span class="hotline-number">{{ $item }}</span>
                                                 <span

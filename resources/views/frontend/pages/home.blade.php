@@ -12,8 +12,6 @@
                         </div>
                     @endforeach
                 </div>
-                <!-- Pagination -->
-                <div class="swiper-pagination"></div>
             </div>
 
         </div>
@@ -122,7 +120,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-container slider" style="margin-top: 70px; overflow-x: hidden">
+
+                                <div class="swiper-container slider" style="margin-top: 50px; overflow-x: hidden">
                                     <div class="swiper-wrapper">
                                         @foreach ($news as $item)
                                             <div class="swiper-slide">
@@ -238,23 +237,22 @@
     <script type="application/ld+json">
     </script>
 
-    <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.js') }}" defer></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const swiper = new Swiper('.swiper-container.banner', {
-                loop: true, // Vòng lặp
+            const bannerSlides = document.querySelectorAll('.swiper-container.banner .swiper-slide');
+            const swiperBanner = new Swiper('.swiper-container.banner', {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                loop: bannerSlides.length > 1 ? true : false,
                 autoplay: {
                     delay: 3000, // Tự động chuyển sau 3 giây
                     disableOnInteraction: false, // Không tắt autoplay khi tương tác
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
+                }
             });
 
-            var swiper = new Swiper('.swiper-container.slider', {
+            var swiperSlider = new Swiper('.swiper-container.slider', {
                 slidesPerView: 1,
                 spaceBetween: 30,
                 breakpoints: {
@@ -279,7 +277,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('frontend/assets/plugins/swiper/swiper-bundle.min.css') }}" />
     <style>
-        .swiper-container {
+        .swiper-container.banner {
             width: 100%;
             height: 500px;
         }

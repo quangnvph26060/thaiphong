@@ -21,17 +21,16 @@ class HomeController extends Controller
         //     ->get();
 
         $catalogues = Category::whereHas('product')
-            ->orderByRaw('ISNULL(location), location ASC')
-            ->where([
-                'is_show_home' => 1,
-                'type' => 'products',
-            ])
-            ->get();
-
-        $catalogues->each(function ($category) {
-            // Sắp xếp sản phẩm theo display_position tăng dần
-            $category->setRelation('product', $category->product()->orderBy('display_position', 'asc')->latest()->take(10)->get());
-        });
+        ->orderByRaw('ISNULL(location), location ASC')
+        ->where([
+            'is_show_home' => 1,
+            'type' => 'products',
+        ])
+        ->with(['product' => function ($query) {
+            // Lọc và sắp xếp sản phẩm khi eager load
+            $query->orderBy('display_position', 'asc')->latest()->take(10);
+        }])
+        ->get();
 
 
 
@@ -51,10 +50,6 @@ class HomeController extends Controller
             ->sortBy('index')
             ->values()
             ->all();
-
-        // $sliderVideo = Slider::where('type', 'video')->first();
-
-        // $services = \App\Models\SupportPolicy::latest()->get();
 
         return view('frontend.pages.home', compact('catalogues', 'news', 'items'));
     }

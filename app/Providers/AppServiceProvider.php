@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -37,9 +38,12 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $view->with([
-                'setting' => \App\Models\Contact::first(),
-                'categoryProduct' => Category::query()->where(['type' => 'products', 'status' => 1])->get()
-
+                'setting' => Cache::remember('contact_setting', 60, function () {
+                    return \App\Models\Contact::first();
+                }),
+                'categoryProduct' => Cache::remember('category_product', 60, function () {
+                    return Category::query()->where(['type' => 'products', 'status' => 1])->get();
+                })
             ]);
         });
 

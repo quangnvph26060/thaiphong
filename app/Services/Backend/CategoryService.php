@@ -4,6 +4,7 @@ namespace App\Services\Backend;
 
 use App\Models\Category;
 use Exception;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -52,6 +53,7 @@ class CategoryService
                 'title_seo' => $data['title_seo'],
                 'location' => $data['location'],
             ]);
+            Cache::forget('category_product');
             DB::commit();
             return $category;
         } catch (Exception $e) {

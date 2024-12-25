@@ -4,6 +4,7 @@ namespace App\Services\Backend;
 
 use Exception;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -40,6 +41,7 @@ class ContactService
                 }
 
                 if ($dataOld->update($payload)) {
+                    Cache::forget('contact_setting');
                     return  toastr()->success('Cập nhật thông tin thành công');
                 } else {
                     return toastr()->error('Cập nhật thông tin thất bại');

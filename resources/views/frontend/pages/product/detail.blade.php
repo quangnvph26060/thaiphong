@@ -25,7 +25,7 @@
                         <div class="col-md-5 col-sm-12 col-xs-12 img-product">
                             <div class="relative d-inline-b qv-preview" data-zoom="1">
                                 @php
-                                    $allImages = array_merge([$product->main_image], $product->images);
+                                    $allImages = array_merge([$product->main_image], $product->images ?? []);
                                 @endphp
                                 @foreach ($allImages as $item)
                                     <a data-fancybox="gallery" data-number="{{ $loop->index }}"

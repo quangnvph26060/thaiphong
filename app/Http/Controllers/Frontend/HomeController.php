@@ -21,16 +21,20 @@ class HomeController extends Controller
         //     ->get();
 
         $catalogues = Category::whereHas('product')
-        ->orderByRaw('ISNULL(location), location ASC')
-        ->where([
-            'is_show_home' => 1,
-            'type' => 'products',
-        ])
-        ->with(['product' => function ($query) {
-            // Lọc và sắp xếp sản phẩm khi eager load
-            $query->orderBy('display_position', 'asc')->latest()->take(10);
-        }])
-        ->get();
+            ->orderByRaw('ISNULL(location), location ASC')
+            ->where([
+                'is_show_home' => 1,
+                'type' => 'products',
+            ])
+            ->with(['product' => function ($query) {
+                $query->orderBy('display_position', 'asc')->latest();
+            }])
+            ->get();
+
+        // Giới hạn mỗi danh mục chỉ chứa 10 sản phẩm
+        $catalogues->each(function ($catalogue) {
+            $catalogue->setRelation('product', $catalogue->product->take(10));
+        });
 
 
 

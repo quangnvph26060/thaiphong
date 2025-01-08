@@ -261,8 +261,8 @@
                             <picture>
                                 <source srcset="{{ showImage($setting->logo) }}" type="image/webp">
                                 <img src="{{ showImage($setting->logo) }}" alt="{{ $setting->company }}"
-                                    style="width: {{ getImageDimensions($setting->logo)[0] }}px !important;
-            height: {{ getImageDimensions($setting->logo)[1] }}px !important;" />
+                                    style="width: {{ getImageDimensions($setting->logo) }}px !important;
+            height: {{ getImageDimensions($setting->logo) }}px !important;" />
                             </picture>
                         </a>
                     </div>

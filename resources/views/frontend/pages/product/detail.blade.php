@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
-@section('title', $product->title_seo ?? $product->title)
-@section('description', $product->sub_description ?? $product->description_seo)
-@section('keywords', $product->keyword_seo)
+@section('title', $product->title_seo ?? $product->name)
+@section('description', $product->description_seo)
+@section('keywords', getImageDimensions($product->keyword_seo) ?? '')
 
-@section('h1', $product->title)
-@section('h2', $product->title)
+@section('h1', $product->name)
+@section('h2', $product->name)
 
-@section('og_title', $product->title_seo ?? $product->title)
+@section('og_title', $product->title_seo ?? $product->name)
 @section('og_description', $product->description_seo ?? $product->sub_description)
 @section('og_image', showImage($product->main_image))
 {{-- html_entity_decode --}}
@@ -15,7 +15,7 @@
 
 @section('content')
 
-    <x-breadcrumb :title="'Sản phẩm'" :name="$product->name" :route="route('product.list')" />
+    <x-breadcrumb :title="'Sản phẩm'" :category="$product->category" :name="$product->name" :route="route('product.list')" />
 
     <div class="page-content">
         <div class="container">
@@ -184,15 +184,16 @@
                                     {{ $setting->introduct_title }}
                                 </p>
                                 <div class="hotline-content">
-                                    <div>
+                                    <div style="line-height: 0">
                                         <i class="fa fa-phone-square"></i> Hotline:
                                     </div>
                                     <div>
                                         @foreach ($setting->introduction['phone'] ?? [] as $key => $item)
-                                            <p>
-                                                <span class="hotline-number">{{ $item }}</span>
+                                            <p style="display: flex; justify-content: space-between; gap: 10px">
                                                 <span
                                                     class="hotline-region">{{ $setting->introduction['facility'][$key] ?? '' }}</span>
+                                                <span class="hotline-number">{{ $item }}</span>
+
                                             </p>
                                         @endforeach
 
@@ -221,7 +222,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content col-xs-12">
                             <div class="pro-info-tab tab-pane active show" id="tab-mo-ta">
-                                {!! $product->description !!}
+                                {!! $product->description ?? 'Đang cập nhật...' !!}
                             </div>
 
 

@@ -125,7 +125,8 @@ function getSize($path)
     return '0 MB'; // Return 0MB if file doesn't exist
 }
 
-function getImageDimensions($path){
+function getImageDimensions($path)
+{
     if ($path && Storage::exists($path)) {
         return getimagesize(showImage($path));
     }
@@ -226,4 +227,14 @@ function generateListSchema($products, $listName)
         'url' => url()->current(),
         'itemListElement' => $itemListElements,
     ];
+}
+
+function formatName($name)
+{
+
+    $formattedString = preg_replace_callback('/\b\w/u', function ($matches) {
+        return mb_strtoupper($matches[0]);
+    }, $name);
+
+    return ucfirst($formattedString);
 }

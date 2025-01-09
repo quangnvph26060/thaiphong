@@ -39,6 +39,18 @@ class ProductService
                 $credentials['file_name'] = $fileName;
             }
 
+            if (!$credentials['guarantee']) {
+                $credentials['guarantee'] = '12 tháng';
+            }
+
+            if (!$credentials['status']) {
+                $credentials['status'] = 'Mới 100%';
+            }
+
+            if (!$credentials['manufacturer']) {
+                $credentials['manufacturer'] = 'Trung Quốc';
+            }
+
             if ($data->hasFile('main_image')) {
                 $credentials['main_image'] = saveImage($data, 'main_image', 'product_main_image');
             }

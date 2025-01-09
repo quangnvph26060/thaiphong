@@ -19,6 +19,7 @@
                         <th>Bảo hành</th>
                         <th>Giá</th>
                         <th>Vị trí hiển thị</th>
+                        <th>Ngày tạo</th>
                         <th style="text-align: center">Hành động</th>
                     </thead>
 
@@ -50,6 +51,7 @@
                         name: 'DT_RowIndex',
                         orderable: false,
                         searchable: false,
+                        width: '5%'
                     },
                     {
                         data: 'name',
@@ -57,7 +59,8 @@
                         render: function(data, type, row) {
                             return '<a href="' + '{{ route('admin.product.detail', '__id__') }}'
                                 .replace('__id__', row.id) + '">' + data + '</a>';
-                        }
+                        },
+                        width: '25%'
                     },
                     {
                         data: 'category_id',
@@ -77,6 +80,10 @@
                         name: 'display_position',
                     },
                     {
+                        data: 'created_at',
+                        name: 'created_at',
+                    },
+                    {
                         data: 'action',
                         name: 'action',
                         orderable: false
@@ -84,9 +91,7 @@
 
                 ],
 
-                order: [
-                    [0, 'desc']
-                ],
+                order: [],
             });
 
             $(document).on('click', '.delete-btn', function() {

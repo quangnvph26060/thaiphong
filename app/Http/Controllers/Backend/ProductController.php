@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Services\Backend\ProductService;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,7 @@ class ProductController extends Controller
     {
         if ($request->ajax()) {
             DB::reconnect();
-            return datatables()->of(Product::select(['id', 'name', 'status', 'price', 'guarantee', 'sale_price', 'category_id', 'display_position'])->get())
+            return datatables()->of(Product::select(['id', 'name', 'status', 'price', 'guarantee', 'sale_price', 'category_id', 'display_position'])->latest()->get())
                 ->addColumn('category_id', function ($row) {
                     return $row->category->name ?? '';
                 })
@@ -52,6 +53,9 @@ class ProductController extends Controller
                 })
                 ->addColumn('sale_price', function ($row) {
                     return number_format($row->price, 0, ',', '.') . ' VND';
+                })
+                ->addColumn('created_at', function ($row) {
+                    return Carbon::parse($row->created_at)->format('d/m/Y');
                 })
                 ->addColumn('display_position', function ($row) {
                     // Nếu bạn muốn hiển thị số thứ tự và có icon chỉnh sửa

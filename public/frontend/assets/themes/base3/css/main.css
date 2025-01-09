@@ -5040,8 +5040,12 @@ body.product_detail .img-product .qv-preview a:first-child {
 .detail-tabs .tab-content {
     background-color: #fff;
     padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    /* border: 1px solid rgba(0, 0, 0, 0.15); */
     width: 100%;
+}
+.img-main-detail {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
 }
 .detail-tabs .tab-content .pro-info-tab {
     width: 100%;

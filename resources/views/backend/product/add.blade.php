@@ -88,17 +88,9 @@
                             </div>
 
 
-                            <div class="form-group mb-3 col-lg-12">
-                                <!-- Ảnh sản phẩm -->
-                                <label for="" class="form-label">Album ảnh</label>
-                                <div class="album pb-3"></div>
-                            </div>
+
 
                             <!-- Mô tả -->
-                            <div class="col-lg-12 mb-3">
-                                <label for="sub_description" class="form-label">Mô tả ngắn</label>
-                                <textarea class="form-control" name="sub_description" rows="3">{{ old('sub_description') }}</textarea>
-                            </div>
 
                             <div class="col-lg-12">
                                 <label for="description" class="form-label">Mô tả chi tiết</label>
@@ -169,6 +161,15 @@
                                 accept="image/*" onchange="previewImage(event, 'show_main_image')">
                         </div>
 
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Album ảnh</h3>
+                    </div>
+                    <div class="form-group mb-3 col-lg-12">
+                        <div class="album pb-3"></div>
                     </div>
                 </div>
                 <div class="form-group">

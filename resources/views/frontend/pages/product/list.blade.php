@@ -1,9 +1,32 @@
 @extends('frontend.layouts.master')
 
-@section('title', 'Sản phẩm')
+@section('title')
+    @isset($category)
+        {{ $category->title_seo ?? $category->title_seo }}
+    @else
+        Sản phẩm
+    @endisset
+@endsection
 
-@section('h1', 'SẢN PHẨM')
-@section('h2', 'SẢN PHẨM')
+@section('description', $category->description_seo ?? '')
+
+@section('keywords', $category->keyword_seo ?? '')
+
+@section('h1')
+    @isset($category)
+        {{ $category->title_seo ?? $category->title_seo }}
+    @else
+        Sản phẩm
+    @endisset
+@endsection
+
+@section('h2')
+    @isset($category)
+        {{ $category->title_seo ?? $category->title_seo }}
+    @else
+        Sản phẩm
+    @endisset
+@endsection
 
 @section('content')
     <x-breadcrumb :title="'Sản phẩm'" :name="$category->name ?? ''" :route="route('product.list')" />
@@ -47,7 +70,7 @@
                                                 <h3 class="wrap-two-lines product-title">
                                                     <a href="{{ route('product.detail', $product->slug) }}"
                                                         class="two-lines"
-                                                        aria-label="{{ $product->name }}">{{ $product->name }}</a>
+                                                        aria-label="{{ $product->name }}"><strong>{{ formatName($product->name) }}</strong></a>
                                                 </h3>
                                                 <div class="btn-purchased">
                                                     <a href="{{ route('contact', $product->slug) }}" rel="nofollow"

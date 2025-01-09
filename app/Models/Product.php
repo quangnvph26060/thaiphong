@@ -17,7 +17,6 @@ class Product extends Model
         'guarantee',
         'price',
         'sale_price',
-        'sub_description',
         'title_seo',
         'description_seo',
         'keyword_seo',

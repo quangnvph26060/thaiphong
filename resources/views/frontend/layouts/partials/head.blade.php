@@ -4,9 +4,9 @@
 <link rel="icon" type="image/png" href="{{ showImage($setting->icon) }}">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<title>@yield('title', $setting->seo_title ?? env('APP_NAME'))</title>
-<meta name="description" content="@yield('description', $setting->seo_description)">
-<meta name="keywords" content="@yield('keywords', formatString($setting->seo_keywords))">
+<title>@yield('title')</title>
+<meta name="description" content="@yield('description')">
+<meta name="keywords" content="@yield('keywords')">
 
 <meta property="fb:app_id" content="1234567890" />
 <meta property="og:url" content="{{ url()->current() }}" />

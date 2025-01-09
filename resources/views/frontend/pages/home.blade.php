@@ -1,5 +1,8 @@
 @extends('frontend.layouts.master')
 
+@section('title', $setting->seo_title)
+@section('description', $setting->seo_description)
+@section('keywords', formatString($setting->seo_keywords))
 
 @section('content')
     <div class="page-content" style="padding: 0 0 30px 0 !important;">
@@ -66,7 +69,7 @@
                                                                     <h3 class="wrap-two-lines product-title">
                                                                         <a href="{{ route('product.detail', $product->slug) }}"
                                                                             class="two-lines"
-                                                                            aria-label="{{ $product->name }}">{{ $product->name }}</a>
+                                                                            aria-label="{{ $product->name }}"><strong>{{ formatName($product->name) }}</strong></a>
                                                                     </h3>
                                                                     <div class="btn-purchased">
                                                                         <a href="{{ route('contact', $product->slug) }}"
